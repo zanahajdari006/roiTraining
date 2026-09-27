@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Location</title>
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 480px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+    color: #222;
+  }
+  button {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #fff;
+    cursor: pointer;
+  }
+  button:hover { background: #1d4ed8; }
+  button:disabled { background: #93c5fd; cursor: not-allowed; }
+  #result {
+    margin-top: 24px;
+    text-align: left;
+    background: #f3f4f6;
+    border-radius: 8px;
+    padding: 16px;
+    display: none;
+  }
+  #result p { margin: 6px 0; }
+  #result a { color: #2563eb; }
+  #status { margin-top: 16px; color: #555; min-height: 20px; }
+  .error { color: #b91c1c; }
+</style>
+</head>
+<body>
+
+<h1>Where am I?</h1>
+<button id="locate-btn">Get My Location</button>
+<div id="status"></div>
+
+<div id="result">
+  <p><strong>Latitude:</strong> <span id="lat"></span></p>
+  <p><strong>Longitude:</strong> <span id="lng"></span></p>
+  <p><strong>Accuracy:</strong> <span id="accuracy"></span> meters</p>
+  <p><a id="map-link" href="#" target="_blank" rel="noopener">View on Google Maps</a></p>
+</div>
+
+<script>
+  const btn = document.getElementById('locate-btn');
+  const statusEl = document.getElementById('status');
+  const resultEl = document.getElementById('result');
+  const latEl = document.getElementById('lat');
+  const lngEl = document.getElementById('lng');
+  const accuracyEl = document.getElementById('accuracy');
+  const mapLink = document.getElementById('map-link');
+
+  btn.addEventListener('click', () => {
+    if (!('geolocation' in navigator)) {
+      statusEl.textContent = 'Geolocation is not supported by this browser.';
+      statusEl.classList.add('error');
+      return;
+    }
+
+    btn.disabled = true;
+    statusEl.classList.remove('error');
+    statusEl.textContent = 'Locating...';
+    resultEl.style.display = 'none';
+
+    // getCurrentPosition fetches the location a single time, so the page
+    // never keeps polling or refreshing in the background.
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude, accuracy } = position.coords;
+
+        latEl.textContent = latitude.toFixed(6);
+        lngEl.textContent = longitude.toFixed(6);
+        accuracyEl.textContent = Math.round(accuracy);
+        mapLink.href = `https://www.google.com/maps?q=${latitude},${longitude}`;
+
+        resultEl.style.display = 'block';
+        statusEl.textContent = 'Location found.';
+        btn.disabled = false;
+      },
+      (error) => {
+        let message;
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            message = 'Permission to access location was denied.';
+            break;
+          case error.POSITION_UNAVAILABLE:
+            message = 'Location information is unavailable.';
+            break;
+          case error.TIMEOUT:
+            message = 'The request to get your location timed out.';
+            break;
+          default:
+            message = 'An unknown error occurred.';
+        }
+        statusEl.textContent = message;
+        statusEl.classList.add('error');
+        btn.disabled = false;
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 100
+      }
+    );
+  });
+</script>
+
+</body>
+</html>
