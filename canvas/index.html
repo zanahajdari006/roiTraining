@@ -3,10 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Canvas Draw Panel</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- The panel: the buttons that control the drawing -->
+    <div id="panel">
+
+        <label>
+            Color
+            <input type="color" id="color" value="#000000">
+        </label>
+
+        <label>
+            Size
+            <input type="range" id="size" min="1" max="50" value="5">
+            <span id="sizeValue">5</span>
+        </label>
+
+        <button id="eraser">Eraser</button>
+
+    </div>
+
+    <!-- The canvas: the white paper we draw on -->
     <canvas id="canvas"></canvas>
-    
+
+    <script src="canvas.js"></script>
 </body>
 </html>
