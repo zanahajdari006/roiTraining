@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #222;
+}
+
+
+/* NAVBAR */
+
+header {
+    background-color: #111;
+    color: white;
+
+    padding: 20px 60px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+
+    margin-left: 25px;
+
+    font-size: 16px;
+}
+
+nav a:hover {
+    color: #ff3b30;
+}
+
+
+/* HERO */
+
+.hero {
+    background-color: #222;
+    color: white;
+
+    text-align: center;
+
+    padding: 100px 20px;
+}
+
+.hero h2 {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.hero button {
+    background-color: #ff3b30;
+    color: white;
+
+    border: none;
+
+    padding: 14px 30px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    border-radius: 5px;
+}
+
+.hero button:hover {
+    background-color: #d82b22;
+}
+
+
+/* CARS */
+
+.cars {
+    padding: 70px 50px;
+
+    text-align: center;
+}
+
+.cars h2 {
+    font-size: 35px;
+
+    margin-bottom: 40px;
+}
+
+.car-container {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 30px;
+
+    flex-wrap: wrap;
+}
+
+.car-card {
+    background-color: white;
+
+    width: 300px;
+
+    padding-bottom: 25px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+
+    overflow: hidden;
+}
+
+.car-card img {
+    width: 100%;
+
+    height: 200px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.car-card h3 {
+    font-size: 24px;
+
+    margin: 20px 0 10px;
+}
+
+.car-card p {
+    margin: 8px 0;
+
+    color: #555;
+}
+
+.car-card button {
+    background-color: #111;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 25px;
+
+    margin-top: 15px;
+
+    cursor: pointer;
+
+    border-radius: 5px;
+}
+
+.car-card button:hover {
+    background-color: #ff3b30;
+}
