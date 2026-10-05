@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exercise 3 · Restaurant homepage (starter)</title>
+  <style>
+    /* ---------- Look and feel (already done for you) ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f7f6f2;
+      color: #14213d;
+    }
+
+    header, nav, .hero, .menu, .hours, footer {
+      padding: 16px;
+      border-radius: 8px;
+    }
+
+    header { background: #b5541a; color: white; }
+    nav    { background: #5b4a8a; }
+    .hero  { background: #14213d; color: white; }
+    .menu  { background: white; }
+    .hours { background: #d6e4f5; }
+    footer { background: #14213d; color: white; }
+
+    header h1 { margin: 0; }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /* ===== YOUR CSS GOES BELOW THIS LINE ===== */
+
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <h1>Trattoria Sole</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Menu</a></li>
+        <li><a href="#">Book a table</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <h2>Fresh pasta, made every morning</h2>
+      <!-- Make this a silent, looping clip that starts by itself
+           and fills the width of its area. -->
+      <video src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"></video>
+    </section>
+
+    <section class="menu">
+      <h2>From our menu</h2>
+      <!-- Each photo exists in two sizes:
+             https://picsum.photos/id/NUMBER/300/300   (300w)
+             https://picsum.photos/id/NUMBER/600/600   (600w)
+           Add srcset and sizes to every image. -->
+      <div class="gallery">
+        <img src="https://picsum.photos/id/292/600/600" alt="Fresh vegetables on a wooden table">
+        <img src="https://picsum.photos/id/429/600/600" alt="Tomatoes and herbs">
+        <img src="https://picsum.photos/id/488/600/600" alt="A bowl of salad">
+        <img src="https://picsum.photos/id/493/600/600" alt="Ripe strawberries">
+        <img src="https://picsum.photos/id/312/600/600" alt="Honey in a glass jar">
+        <img src="https://picsum.photos/id/431/600/600" alt="A cup of coffee">
+      </div>
+    </section>
+
+    <aside class="hours">
+      <h2>Opening hours</h2>
+      <p>Tue–Fri: 12:00–22:00<br>Sat–Sun: 11:00–23:00<br>Monday: closed</p>
+    </aside>
+
+    <footer>
+      <p>Trattoria Sole · Via Roma 12</p>
+    </footer>
+
+  </div>
+</body>
+</html>

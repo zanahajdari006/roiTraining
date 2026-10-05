@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo 03 · Responsive video</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f7f6f2;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* ---------- 1. A responsive video ---------- */
+    /* STEP: comment this rule out, then look at a phone viewport. */
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ---------- 2. A hero background video ---------- */
+    .hero {
+      position: relative;
+      height: 60vh;
+      overflow: hidden;
+    }
+
+    .hero video {
+      height: 100%;
+      object-fit: cover; /* fill the box, crop the edges */
+    }
+
+    .hero h1 {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      margin: 0;
+      color: white;
+      font-size: 40px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ---------- 3. A YouTube / Vimeo embed ---------- */
+    .video-embed {
+      width: 100%;
+      aspect-ratio: 16 / 9; /* TRY: comment this out */
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 2. HERO: autoplay only works because of "muted".
+       TRY: remove muted and reload. The video will not start. -->
+  <section class="hero">
+    <video
+      src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+      autoplay muted loop playsinline
+      poster="https://placehold.co/1280x720/png?text=Poster+image">
+    </video>
+    <h1>Spring Flower Market</h1>
+  </section>
+
+  <main class="content">
+    <h2>1. A content video with controls</h2>
+
+    <!-- TRY: remove controls → there is no way to pause.
+         TRY: write autoplay="false" → it still autoplays (boolean attribute!) -->
+    <video controls poster="https://placehold.co/1280x720/png?text=Click+play">
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm">
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+      <p>
+        Your browser can't play this video.
+        <a href="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">Download it</a>.
+      </p>
+    </video>
+
+    <h2>3. An embedded video</h2>
+    <!-- Replace VIDEO_ID with a real id: on YouTube click Share → Embed
+         and copy the part after /embed/ -->
+    <iframe
+      class="video-embed"
+      src="https://www.youtube.com/embed/VIDEO_ID"
+      title="Embedded video example"
+      allowfullscreen></iframe>
+  </main>
+
+</body>
+</html>

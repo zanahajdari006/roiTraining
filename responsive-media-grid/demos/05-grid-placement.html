@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo 05 · Placing items with lines</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: #f7f6f2;
+    }
+
+    h2 {
+      margin-top: 40px;
+    }
+
+    /* ---------- Part A: the playground ---------- */
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 120px);
+      gap: 12px;
+    }
+
+    .board div {
+      background: #2b5c9e;
+      color: white;
+      font-size: 24px;
+      padding: 16px;
+      border-radius: 8px;
+    }
+
+    .board .featured {
+      background: #b5541a;
+      grid-column: 1 / 3;   /* from line 1 to line 3 = 2 columns */
+      grid-row: 1 / 3;      /* from line 1 to line 3 = 2 rows    */
+
+      /* TRY each of these instead:
+         grid-column: 1 / 4;         full width
+         grid-column: 2 / 4;         columns 2 and 3
+         grid-column: span 2;        2 columns, wherever it lands
+         grid-column: 1 / -1;        first line to last line */
+    }
+
+    /* ---------- Part B: a real news page ---------- */
+    .news {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);  /* TRY: repeat(4, 1fr) */
+      gap: 24px;
+    }
+
+    .news article {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .news .top-story {
+      grid-column: 1 / -1;  /* always full width, however many columns */
+      background: #fbe9dc;
+    }
+
+    .news img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Placing items</h1>
+
+  <h2>A · Playground</h2>
+  <div class="board">
+    <div class="featured">featured</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+  </div>
+
+  <h2>B · News page</h2>
+  <section class="news">
+    <article class="top-story">
+      <h3>Top story: City opens its first car-free street</h3>
+      <img src="https://picsum.photos/id/1067/1200/400" width="1200" height="400" alt="A busy city street seen from above">
+    </article>
+    <article><h3>Local team wins the cup</h3><p>Short summary of the story.</p></article>
+    <article><h3>New library opens</h3><p>Short summary of the story.</p></article>
+    <article><h3>Weather: sunny weekend</h3><p>Short summary of the story.</p></article>
+    <article><h3>Market prices this week</h3><p>Short summary of the story.</p></article>
+    <article><h3>School concert tonight</h3><p>Short summary of the story.</p></article>
+    <article><h3>Bike lanes extended</h3><p>Short summary of the story.</p></article>
+  </section>
+</body>
+</html>

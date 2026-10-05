@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo 02 · srcset and sizes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: #f7f6f2;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* The image is full width on small screens and half width on
+       screens wider than 600px. The "sizes" attribute below must
+       describe exactly this. */
+    .photo {
+      width: 100%;
+    }
+
+    @media (min-width: 601px) {
+      .photo {
+        width: 50%;
+      }
+    }
+
+    .info {
+      margin-top: 12px;
+      padding: 12px;
+      background: #14213d;
+      color: white;
+      font-family: monospace;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Which file did the browser choose?</h1>
+
+  <!-- Each placeholder image has its width written on it,
+       so you can SEE which file was downloaded. -->
+  <img
+    class="photo"
+    src="https://placehold.co/800x500/png?text=800w+file"
+    srcset="https://placehold.co/400x250/png?text=400w+file 400w,
+            https://placehold.co/800x500/png?text=800w+file 800w,
+            https://placehold.co/1600x1000/png?text=1600w+file 1600w"
+    sizes="(max-width: 600px) 100vw,
+           50vw"
+    width="800" height="500"
+    alt="Placeholder showing which file was chosen">
+
+  <div class="info" id="info">Loading…</div>
+
+  <p>
+    How to test: open DevTools, tick <b>Network → Disable cache</b>,
+    switch device in the device toolbar, then <b>reload</b>.
+    Once a big file is cached the browser will not swap back to a smaller one.
+  </p>
+
+  <!-- TRY IT:
+       1. Delete the sizes attribute. The browser now assumes 100vw
+          and picks bigger files on desktop.
+       2. Change 50vw to 25vw. Smaller files get picked on desktop. -->
+
+  <!-- Teacher helper: prints the viewport width, the pixel density and the
+       chosen file. Students do not need to understand this script. -->
+  <script>
+    const img = document.querySelector('.photo');
+    const info = document.getElementById('info');
+
+    function show() {
+      const file = img.currentSrc ? img.currentSrc.split('text=')[1] : '…';
+      info.textContent =
+        'Viewport: ' + window.innerWidth + 'px | ' +
+        'Pixel density: ' + window.devicePixelRatio + 'x | ' +
+        'Chosen file: ' + decodeURIComponent(file || '').replace(/\+/g, ' ');
+    }
+
+    img.addEventListener('load', show);
+    window.addEventListener('resize', show);
+    show();
+  </script>
+</body>
+</html>

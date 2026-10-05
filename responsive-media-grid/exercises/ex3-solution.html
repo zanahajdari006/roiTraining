@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exercise 3 · Restaurant homepage (solution)</title>
+  <style>
+    /* ---------- Look and feel (already done for you) ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f7f6f2;
+      color: #14213d;
+    }
+
+    header, nav, .hero, .menu, .hours, footer {
+      padding: 16px;
+      border-radius: 8px;
+    }
+
+    header { background: #b5541a; color: white; }
+    nav    { background: #5b4a8a; }
+    .hero  { background: #14213d; color: white; }
+    .menu  { background: white; }
+    .hours { background: #d6e4f5; }
+    footer { background: #14213d; color: white; }
+
+    header h1 { margin: 0; }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /* ===== YOUR CSS GOES BELOW THIS LINE ===== */
+
+    /* --- Responsive media (Part 1) --- */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hero video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+    }
+
+    /* --- Name every area --- */
+    header { grid-area: header; }
+    nav    { grid-area: nav; }
+    .hero  { grid-area: hero; }
+    .menu  { grid-area: menu; }
+    .hours { grid-area: hours; }
+    footer { grid-area: footer; }
+
+    /* --- Phones: one column --- */
+    .page {
+      display: grid;
+      gap: 16px;
+      padding: 16px;
+      grid-template-areas:
+        "header"
+        "nav"
+        "hero"
+        "menu"
+        "hours"
+        "footer";
+    }
+
+    /* --- Menu gallery: 2 columns of square photos --- */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    /* --- Tablets: two columns --- */
+    @media (min-width: 768px) {
+      .page {
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas:
+          "header header"
+          "nav    nav"
+          "hero   hero"
+          "menu   hours"
+          "footer footer";
+      }
+
+      nav li {
+        display: inline-block;
+        margin-right: 16px;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* --- Desktops: three columns --- */
+    @media (min-width: 1024px) {
+      .page {
+        grid-template-columns: 200px 1fr 260px;
+        grid-template-areas:
+          "header header header"
+          "nav    hero   hours"
+          "nav    menu   hours"
+          "footer footer footer";
+      }
+
+      nav li {
+        display: block;
+        margin: 0 0 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <h1>Trattoria Sole</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Menu</a></li>
+        <li><a href="#">Book a table</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <h2>Fresh pasta, made every morning</h2>
+      <video src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+             autoplay muted loop playsinline></video>
+    </section>
+
+    <section class="menu">
+      <h2>From our menu</h2>
+      <!-- sizes: on tablet and desktop each photo is roughly a fifth of the
+           screen (3 columns inside a part of the page); on phones about half. -->
+      <div class="gallery">
+        <img src="https://picsum.photos/id/292/600/600"
+             srcset="https://picsum.photos/id/292/300/300 300w, https://picsum.photos/id/292/600/600 600w"
+             sizes="(min-width: 768px) 20vw, 50vw"
+             width="600" height="600" alt="Fresh vegetables on a wooden table">
+        <img src="https://picsum.photos/id/429/600/600"
+             srcset="https://picsum.photos/id/429/300/300 300w, https://picsum.photos/id/429/600/600 600w"
+             sizes="(min-width: 768px) 20vw, 50vw"
+             width="600" height="600" alt="Tomatoes and herbs">
+        <img src="https://picsum.photos/id/488/600/600"
+             srcset="https://picsum.photos/id/488/300/300 300w, https://picsum.photos/id/488/600/600 600w"
+             sizes="(min-width: 768px) 20vw, 50vw"
+             width="600" height="600" alt="A bowl of salad">
+        <img src="https://picsum.photos/id/493/600/600"
+             srcset="https://picsum.photos/id/493/300/300 300w, https://picsum.photos/id/493/600/600 600w"
+             sizes="(min-width: 768px) 20vw, 50vw"
+             width="600" height="600" alt="Ripe strawberries">
+        <img src="https://picsum.photos/id/312/600/600"
+             srcset="https://picsum.photos/id/312/300/300 300w, https://picsum.photos/id/312/600/600 600w"
+             sizes="(min-width: 768px) 20vw, 50vw"
+             width="600" height="600" alt="Honey in a glass jar">
+        <img src="https://picsum.photos/id/431/600/600"
+             srcset="https://picsum.photos/id/431/300/300 300w, https://picsum.photos/id/431/600/600 600w"
+             sizes="(min-width: 768px) 20vw, 50vw"
+             width="600" height="600" alt="A cup of coffee">
+      </div>
+    </section>
+
+    <aside class="hours">
+      <h2>Opening hours</h2>
+      <p>Tue–Fri: 12:00–22:00<br>Sat–Sun: 11:00–23:00<br>Monday: closed</p>
+    </aside>
+
+    <footer>
+      <p>Trattoria Sole · Via Roma 12</p>
+    </footer>
+
+  </div>
+</body>
+</html>

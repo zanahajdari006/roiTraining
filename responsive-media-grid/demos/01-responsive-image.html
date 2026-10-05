@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo 01 · Responsive image with CSS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: #f7f6f2;
+    }
+
+    .article {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 16px;
+    }
+
+    /* STEP 1: start with this rule commented out.
+       Open the page in a phone viewport (DevTools → Ctrl+Shift+M):
+       the big photo overflows and the page scrolls sideways.
+
+       STEP 2: uncomment it. The photo now fits. */
+
+    /*
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    */
+
+    /* STEP 3 (comparison): uncomment this to see the difference
+       between width and max-width on the SMALL image below.
+       The small image gets stretched and blurry. */
+
+    /*
+    .small-photo {
+      width: 100%;
+    }
+    */
+
+    /* TRY BREAKING IT: delete "height: auto" in the img rule.
+       Because the <img> tags have width/height attributes,
+       the photo gets squashed when it shrinks. */
+  </style>
+</head>
+<body>
+  <article class="article">
+    <h1>A weekend by the lake</h1>
+
+    <!-- This file is 1600px wide: bigger than any phone screen -->
+    <img
+      src="https://picsum.photos/id/1015/1600/1000"
+      width="1600" height="1000"
+      alt="A river winding between mountains">
+
+    <p>
+      Narrow the browser window. Without the img rule, the photo keeps its
+      real size (1600px) and the page gets a horizontal scrollbar.
+    </p>
+
+    <h2>A small image (300px wide)</h2>
+    <img
+      class="small-photo"
+      src="https://picsum.photos/id/1025/300/200"
+      width="300" height="200"
+      alt="A small dog wrapped in a blanket">
+
+    <p>
+      With <code>max-width: 100%</code> this image stays 300px wide.
+      With <code>width: 100%</code> it is stretched to fill the article.
+    </p>
+  </article>
+</body>
+</html>
