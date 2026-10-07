@@ -19,32 +19,25 @@
       padding: 16px;
     }
 
-    /* STEP 1: start with this rule commented out.
-       Open the page in a phone viewport (DevTools → Ctrl+Shift+M):
-       the big photo overflows and the page scrolls sideways.
 
-       STEP 2: uncomment it. The photo now fits. */
-
-    /*
+    
     img {
       max-width: 100%;
       height: auto;
     }
-    */
+   
 
-    /* STEP 3 (comparison): uncomment this to see the difference
-       between width and max-width on the SMALL image below.
-       The small image gets stretched and blurry. */
+ /* comparison between max-width and width  */
 
-    /*
+    
     .small-photo {
       width: 100%;
     }
-    */
+   
 
-    /* TRY BREAKING IT: delete "height: auto" in the img rule.
-       Because the <img> tags have width/height attributes,
-       the photo gets squashed when it shrinks. */
+
+/* deleting height auto in the img rule will break the image's aspect ratio */
+
   </style>
 </head>
 <body>

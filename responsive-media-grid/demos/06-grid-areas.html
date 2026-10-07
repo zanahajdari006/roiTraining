@@ -24,29 +24,24 @@
     main   { background: #2f6b3a; min-height: 300px; }
     footer { background: #14213d; }
 
-    /* STEP 1: name each item (nothing visible happens yet) */
+    /* STEP 1: naming each item (nothing visible happens yet) */
     header { grid-area: header; }
     aside  { grid-area: sidebar; }
     main   { grid-area: main; }
     footer { grid-area: footer; }
 
-    /* STEP 2: draw the map on the container */
+    /* STEP 2: drawing the map on the container */
     .page {
       display: grid;
       grid-template-columns: 200px 1fr;
       grid-template-areas:
         "header  header"
-        "sidebar main"
-        "footer  footer";
+        "sidebar  main"
+        "footer  footer ";
       gap: 16px;
     }
 
-    /* TRY:
-       1. Swap "sidebar main" to "main sidebar" → sidebar moves right.
-       2. Change the first row to "header" (one cell) → the template becomes
-          INVALID and is crossed out in DevTools. Everything stacks.
-       3. Change "header  header" to ".       header" → empty top-left cell.
-       4. Write grid-area: "main"; with quotes → invalid, main is auto-placed. */
+
   </style>
 </head>
 <body>

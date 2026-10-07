@@ -59,20 +59,6 @@
     aside  { grid-area: aside; }
     footer { grid-area: footer; }
 
-    /* ---------- Gallery inside main (Grid + responsive images) ---------- */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .gallery img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-
     /* ---------- STEP 2: tablet, two columns ---------- */
     @media (min-width: 768px) {
       .page {
@@ -87,10 +73,6 @@
       nav li {
         display: inline-block;  /* links side by side in the top bar */
         margin-right: 16px;
-      }
-
-      .gallery {
-        grid-template-columns: repeat(3, 1fr);
       }
     }
 
@@ -107,10 +89,6 @@
       nav li {
         display: block;  /* back to a vertical list in the sidebar */
         margin: 0 0 8px;
-      }
-
-      .gallery {
-        grid-template-columns: repeat(4, 1fr);
       }
     }
   </style>
@@ -137,33 +115,9 @@
         768px and at 1024px. The HTML never changes, only the grid map.
       </p>
 
-      <h3>Photo gallery</h3>
-      <!-- sizes matches the gallery columns:
-           4 columns (≈25vw) on desktop, 3 (≈33vw) on tablet, 2 (≈50vw) on phones.
-           On desktop the gallery sits in the middle column, so 25vw is generous;
-           that's fine, sizes is a hint. -->
-      <div class="gallery">
-        <img src="https://picsum.photos/id/1018/600/600"
-             srcset="https://picsum.photos/id/1018/300/300 300w,
-                     https://picsum.photos/id/1018/600/600 600w"
-             sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-             width="600" height="600" alt="Mountain valley with a river">
-        <img src="https://picsum.photos/id/1036/600/600"
-             srcset="https://picsum.photos/id/1036/300/300 300w,
-                     https://picsum.photos/id/1036/600/600 600w"
-             sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-             width="600" height="600" alt="Snowy forest">
-        <img src="https://picsum.photos/id/1039/600/600"
-             srcset="https://picsum.photos/id/1039/300/300 300w,
-                     https://picsum.photos/id/1039/600/600 600w"
-             sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-             width="600" height="600" alt="Waterfall in a green forest">
-        <img src="https://picsum.photos/id/1043/600/600"
-             srcset="https://picsum.photos/id/1043/300/300 300w,
-                     https://picsum.photos/id/1043/600/600 600w"
-             sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-             width="600" height="600" alt="Lake surrounded by trees">
-      </div>
+      <!-- Thanks to the img rule at the top, this photo always fits main. -->
+      <img src="https://picsum.photos/id/1018/1200/800"
+           width="1200" height="800" alt="Mountain valley with a river">
     </main>
 
     <aside>
