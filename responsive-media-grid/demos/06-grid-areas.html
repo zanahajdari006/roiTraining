@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo 06 · Named grid areas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: #f7f6f2;
+    }
+
+    header, aside, main, footer {
+      padding: 20px;
+      border-radius: 8px;
+      color: white;
+      font-size: 22px;
+    }
+
+    header { background: #b5541a; }
+    aside  { background: #2b5c9e; }
+    main   { background: #2f6b3a; min-height: 300px; }
+    footer { background: #14213d; }
+
+    /* STEP 1: naming each item (nothing visible happens yet) */
+    header { grid-area: header; }
+    aside  { grid-area: sidebar; }
+    main   { grid-area: main; }
+    footer { grid-area: footer; }
+
+    /* STEP 2: drawing the map on the container */
+    .page {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      grid-template-areas:
+        "header  header"
+        "sidebar  main"
+        "footer  footer ";
+      gap: 16px;
+    }
+
+
+  </style>
+</head>
+<body>
+  <!-- The HTML is in a strange order on purpose: the map still decides
+       where things go. In real pages, keep the HTML in a logical reading
+       order, because screen readers and the Tab key follow the HTML. -->
+  <div class="page">
+    <footer>footer</footer>
+    <main>main</main>
+    <aside>sidebar</aside>
+    <header>header</header>
+  </div>
+</body>
+</html>

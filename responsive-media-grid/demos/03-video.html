@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo 03 · Responsive video</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f7f6f2;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* If you comment this rule out, the video will not scale responsively. */
+    video {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <main class="content">
+    <h1>Spring Flower Market</h1>
+
+    <h2>1. A video with controls</h2>
+    <!-- removing controls → there is no way to pause. -->
+    <video controls poster="https://placehold.co/1280x720/png?text=Click+play">
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm">
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+      Your browser can't play this video.
+    </video>
+
+    <h2>2. A silent video that plays by itself</h2>
+    <!-- autoplay only works because of "muted".
+         If we remove muted and reload, the video will not start.
+         writing muted="false" does not work. It is STILL muted (boolean attribute). -->
+    <video
+      src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+      autoplay muted loop playsinline
+      poster="https://placehold.co/1280x720/png?text=Poster+image">
+    </video>
+  </main>
+</body>
+</html>

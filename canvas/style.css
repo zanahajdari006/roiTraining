@@ -29,13 +29,12 @@ body {
     background: white;
 }
 
-/* A button we turn on/off gets this class from JavaScript */
 #panel button.active {
     background: black;
     color: white;
 }
 
-/* The canvas is our drawing paper */
+
 canvas {
     display: block;
     background: white;

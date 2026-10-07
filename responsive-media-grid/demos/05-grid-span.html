@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo 05 · Making an item wider with span</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: #f7f6f2;
+    }
+
+    .news {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    .news article {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .top-story {
+      background: #fbe9dc;
+      grid-column: span 3;  /* take up 3 columns */
+
+    }
+  </style>
+</head>
+<body>
+  <h1>News</h1>
+
+  <section class="news">
+    <article class="top-story">
+      <h2>Top story: City opens its first car-free street</h2>
+      <p>The main story is wider than the others.</p>
+    </article>
+    <article><h3>Local team wins the cup</h3><p>Short summary.</p></article>
+    <article><h3>New library opens</h3><p>Short summary.</p></article>
+    <article><h3>Sunny weekend ahead</h3><p>Short summary.</p></article>
+    <article><h3>Market prices this week</h3><p>Short summary.</p></article>
+    <article><h3>School concert tonight</h3><p>Short summary.</p></article>
+    <article><h3>Bike lanes extended</h3><p>Short summary.</p></article>
+  </section>
+</body>
+</html>

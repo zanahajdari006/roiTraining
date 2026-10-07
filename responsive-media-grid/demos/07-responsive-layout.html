@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo 07 · Responsive page with Grid</title>
+  <style>
+    /* ---------- Base ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f7f6f2;
+      color: #14213d;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    header, nav, main, aside, footer {
+      padding: 16px;
+      border-radius: 8px;
+    }
+
+    header { background: #b5541a; color: white; }
+    nav    { background: #5b4a8a; color: white; }
+    main   { background: white; }
+    aside  { background: #d6e4f5; }
+    footer { background: #14213d; color: white; }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: white;
+    }
+
+    /* ---------- STEP 1: mobile first, one column ---------- */
+    .page {
+      display: grid;
+      gap: 16px;
+      padding: 16px;
+      grid-template-areas:
+        "header"
+        "nav"
+        "main"
+        "aside"
+        "footer";
+    }
+
+    header { grid-area: header; }
+    nav    { grid-area: nav; }
+    main   { grid-area: main; }
+    aside  { grid-area: aside; }
+    footer { grid-area: footer; }
+
+    /* ---------- STEP 2: tablet, two columns ---------- */
+    @media (min-width: 768px) {
+      .page {
+        grid-template-columns: 1fr 240px;
+        grid-template-areas:
+          "header header"
+          "nav    nav"
+          "main   aside"
+          "footer footer";
+      }
+
+      nav li {
+        display: inline-block;  /* links side by side in the top bar */
+        margin-right: 16px;
+      }
+    }
+
+    /* ---------- STEP 3: desktop, three columns ---------- */
+    @media (min-width: 1024px) {
+      .page {
+        grid-template-columns: 200px 1fr 240px;
+        grid-template-areas:
+          "header header header"
+          "nav    main   aside"
+          "footer footer footer";
+      }
+
+      nav li {
+        display: block;  /* back to a vertical list in the sidebar */
+        margin: 0 0 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>Wanderlust Travel Blog</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Destinations</a></li>
+        <li><a href="#">Tips</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h2>Ten days in the mountains</h2>
+      <p>
+        Drag the browser from narrow to wide. Watch the layout change at
+        768px and at 1024px. The HTML never changes, only the grid map.
+      </p>
+
+      <!-- Thanks to the img rule at the top, this photo always fits main. -->
+      <img src="https://picsum.photos/id/1018/1200/800"
+           width="1200" height="800" alt="Mountain valley with a river">
+    </main>
+
+    <aside>
+      <h3>Trip facts</h3>
+      <p>Distance: 120 km<br>Best season: summer<br>Difficulty: medium</p>
+    </aside>
+
+    <footer>
+      <p>&copy; Wanderlust Travel Blog</p>
+    </footer>
+  </div>
+</body>
+</html>
