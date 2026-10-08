@@ -5,47 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Demo 04 · Pseudo-elements</title>
   <style>
+    /* ---------- Page look (not part of the lesson) ---------- */
     body {
       font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
       margin: 0;
-      padding: 24px;
-      background: #f7f6f2;
+      padding: 40px 16px;
+      background: #f1f2f8;
+      color: #1b1f3b;
     }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .hint {
+      color: #6b7080;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+    }
+
+    p {
+      margin: 0 0 16px;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      max-width: 320px;
+      box-sizing: border-box;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+    }
+
+    /* ---------- The lesson ---------- */
 
     /* adds a star BEFORE every h2 — it is not in the HTML! */
     h2::before {
       content: "★ ";
-      color: #ff6b6b;
+      color: #e8634a;
     }
 
-    /* adds text AFTER every link */
+    /* adds an arrow AFTER every link */
     a::after {
       content: " →";
     }
 
     /* styles only the first letter */
     p::first-letter {
-      font-size: 32px;
+      font-size: 28px;
       font-weight: bold;
-      color: #1b1f3b;
+      color: #e8634a;
     }
 
-    /* styles the placeholder text inside an input */
+    /* styles the hint text inside an input */
     input::placeholder {
-      color: #ff6b6b;
+      color: #e8634a;
     }
   </style>
 </head>
 <body>
-  <h2>About Me</h2>
-  <p>Hi, I'm a web developer in training.</p>
+  <div class="page">
+    <h1>Pseudo-elements</h1>
+    <div class="hint">Two colons :: — style a part of an element, or add a piece that isn't in the HTML.</div>
 
-  <h2>Contact</h2>
-  <p>Send me a message!</p>
-  <input type="text" placeholder="Your name">
+    <div class="box">
+      <div class="hint">::before adds the star · ::first-letter makes the first letter big</div>
+      <h2>About Me</h2>
+      <p>Hi, I'm a web developer in training.</p>
+    </div>
 
-  <p><a href="#">See my projects</a></p>
+    <div class="box">
+      <div class="hint">::placeholder colors the hint text in the box · ::after adds the arrow</div>
+      <h2>Contact</h2>
+      <p>Send me a message!</p>
+      <input type="text" placeholder="Your name">
+      <div style="margin-top: 16px;"><a href="#">See my projects</a></div>
+    </div>
 
-  <!-- remember: ::before and ::after need  content: "";  or nothing shows -->
+    <!-- remember: ::before and ::after need  content: "";  or nothing shows -->
+  </div>
 </body>
 </html>

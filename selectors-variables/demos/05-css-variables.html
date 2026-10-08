@@ -8,7 +8,7 @@
     /* 1. DEFINE the variables (two dashes!) */
     :root {
       --main: #1b1f3b;
-      --accent: #ff6b6b;
+      --accent: #e8634a;
       --light: #f1f2f8;
       --radius: 8px;
     }
@@ -16,14 +16,22 @@
     /* 2. USE them with var() */
     body {
       font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
       margin: 0;
-      padding: 24px;
+      padding: 40px 16px;
       background: var(--light);
       color: var(--main);
     }
 
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
     h1 {
       color: var(--accent);
+      margin: 0 0 16px;
     }
 
     button {
@@ -31,7 +39,9 @@
       color: white;
       border: none;
       padding: 10px 20px;
+      font-size: 16px;
       border-radius: var(--radius);
+      margin-right: 16px;
     }
 
     a {
@@ -42,21 +52,32 @@
       background: white;
       border: 2px solid var(--main);
       border-radius: var(--radius);
-      padding: 16px;
-      margin-top: 16px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .hint {
+      color: #6b7080;
+      font-size: 15px;
+      margin-top: 24px;
     }
 
     /* TRY IT: change --accent to green and refresh.
-       Everything coral changes at once! */
+       Everything coral changes at once!
+       Then change --radius to 20px. */
   </style>
 </head>
 <body>
-  <h1>Hello, I'm Alex</h1>
-  <button>Contact me</button>
-  <p><a href="#">My projects</a></p>
+  <div class="page">
+    <h1>Hello, I'm Alex</h1>
+    <button>Contact me</button>
+    <a href="#">My projects</a>
 
-  <div class="card">
-    <p>This card uses --main for the border and --radius for the corners.</p>
+    <div class="card">
+      This card uses --main for the border and --radius for the corners.
+    </div>
+
+    <div class="hint">Try it: change --accent in :root to green, save and refresh. The heading, button and link all change together.</div>
   </div>
 </body>
 </html>

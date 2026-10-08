@@ -5,18 +5,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Demo 02 · Attribute selectors</title>
   <style>
+    /* ---------- Page look (not part of the lesson) ---------- */
     body {
       font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
       margin: 0;
+      padding: 40px 16px;
+      background: #f1f2f8;
+      color: #1b1f3b;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: white;
+      border-radius: 12px;
       padding: 24px;
-      background: #f7f6f2;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .hint {
+      color: #6b7080;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+    }
+
+    img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      margin-right: 16px;
     }
 
     input {
       display: block;
+      width: 100%;
+      max-width: 320px;
+      box-sizing: border-box;
       margin-bottom: 12px;
-      padding: 8px;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 6px;
     }
+
+    a {
+      margin-right: 16px;
+    }
+
+    /* ---------- The lesson ---------- */
 
     /* has the attribute (any value) */
     img[alt] {
@@ -26,7 +72,7 @@
 
     /* has this exact value */
     input[type="email"] {
-      border: 2px solid #ff6b6b;
+      border-color: #e8634a;
     }
 
     input[type="password"] {
@@ -35,23 +81,35 @@
 
     a[target="_blank"] {
       font-weight: bold;
-      color: #ff6b6b;
+      color: #e8634a;
     }
   </style>
 </head>
 <body>
-  <img src="https://picsum.photos/120" alt="My photo">
-  <img src="https://picsum.photos/121">  <!-- no alt, so no border -->
+  <div class="page">
+    <h1>Attribute selectors</h1>
+    <div class="hint">Pick elements by their attributes, written in [square brackets].</div>
 
-  <form>
-    <input type="text" placeholder="Name">
-    <input type="email" placeholder="Email">
-    <input type="password" placeholder="Password">
-  </form>
+    <div class="box">
+      <div class="hint">img[alt] — only the image WITH alt text gets the round border.</div>
+      <img src="https://picsum.photos/id/1027/240" alt="My photo">
+      <img src="https://picsum.photos/id/1011/240">  <!-- no alt, so no border -->
+    </div>
 
-  <p>
-    <a href="https://developer.mozilla.org" target="_blank">Opens in a new tab</a> ·
-    <a href="#">Normal link</a>
-  </p>
+    <div class="box">
+      <div class="hint">input[type="email"] — only the email box is coral. Same tag, no class!</div>
+      <form>
+        <input type="text" placeholder="Name">
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+      </form>
+    </div>
+
+    <div class="box">
+      <div class="hint">a[target="_blank"] — only the link that opens a new tab is bold.</div>
+      <a href="https://developer.mozilla.org" target="_blank">Opens in a new tab</a>
+      <a href="#">Normal link</a>
+    </div>
+  </div>
 </body>
 </html>
