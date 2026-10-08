@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo 04 · Pseudo-elements</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: #f7f6f2;
+    }
+
+    /* adds a star BEFORE every h2 — it is not in the HTML! */
+    h2::before {
+      content: "★ ";
+      color: #ff6b6b;
+    }
+
+    /* adds text AFTER every link */
+    a::after {
+      content: " →";
+    }
+
+    /* styles only the first letter */
+    p::first-letter {
+      font-size: 32px;
+      font-weight: bold;
+      color: #1b1f3b;
+    }
+
+    /* styles the placeholder text inside an input */
+    input::placeholder {
+      color: #ff6b6b;
+    }
+  </style>
+</head>
+<body>
+  <h2>About Me</h2>
+  <p>Hi, I'm a web developer in training.</p>
+
+  <h2>Contact</h2>
+  <p>Send me a message!</p>
+  <input type="text" placeholder="Your name">
+
+  <p><a href="#">See my projects</a></p>
+
+  <!-- remember: ::before and ::after need  content: "";  or nothing shows -->
+</body>
+</html>

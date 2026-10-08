@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo 02 · Attribute selectors</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: #f7f6f2;
+    }
+
+    input {
+      display: block;
+      margin-bottom: 12px;
+      padding: 8px;
+    }
+
+    /* has the attribute (any value) */
+    img[alt] {
+      border-radius: 50%;
+      border: 4px solid #4ecdc4;
+    }
+
+    /* has this exact value */
+    input[type="email"] {
+      border: 2px solid #ff6b6b;
+    }
+
+    input[type="password"] {
+      background: #eee;
+    }
+
+    a[target="_blank"] {
+      font-weight: bold;
+      color: #ff6b6b;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://picsum.photos/120" alt="My photo">
+  <img src="https://picsum.photos/121">  <!-- no alt, so no border -->
+
+  <form>
+    <input type="text" placeholder="Name">
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+  </form>
+
+  <p>
+    <a href="https://developer.mozilla.org" target="_blank">Opens in a new tab</a> ·
+    <a href="#">Normal link</a>
+  </p>
+</body>
+</html>

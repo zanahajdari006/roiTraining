@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo 03 · Pseudo-classes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: #f7f6f2;
+    }
+
+    /* STATE: mouse is over it */
+    button:hover {
+      background: #ff6b6b;
+      color: white;
+    }
+
+    /* STATE: you clicked into it */
+    input:focus {
+      outline: 3px solid #4ecdc4;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      width: 250px;
+    }
+
+    li {
+      padding: 8px;
+    }
+
+    /* POSITION in the list */
+    li:first-child {
+      font-weight: bold;
+    }
+
+    li:last-child {
+      color: gray;
+    }
+
+    li:nth-child(odd) {   /* try even, or 2 */
+      background: #e2e4f0;
+    }
+  </style>
+</head>
+<body>
+  <button>Hover me</button>
+  <input type="text" placeholder="Click into me">
+
+  <h2>My hobbies</h2>
+  <ul>
+    <li>Coding</li>
+    <li>Football</li>
+    <li>Music</li>
+    <li>Reading</li>
+    <li>Sleeping</li>
+  </ul>
+</body>
+</html>
