@@ -1,8 +1,7 @@
-* {
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
 
 body {
     font-family: Arial, sans-serif;
@@ -10,8 +9,6 @@ body {
     color: #222;
 }
 
-
-/* NAVBAR */
 
 header {
     background-color: #111;
@@ -41,8 +38,6 @@ nav a:hover {
     color: #ff3b30;
 }
 
-
-/* HERO */
 
 .hero {
     background-color: #222;
@@ -82,8 +77,6 @@ nav a:hover {
     background-color: #d82b22;
 }
 
-
-/* CARS */
 
 .cars {
     padding: 70px 50px;
@@ -161,4 +154,10 @@ nav a:hover {
 
 .car-card button:hover {
     background-color: #ff3b30;
+
+  
+  
+h1 {
+    color: red;
+    font-size: 50px;
 }
