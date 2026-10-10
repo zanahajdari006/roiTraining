@@ -1,0 +1,128 @@
+/* ---------- 1. THEME (CSS variables) ----------
+   Change a color here and the whole page changes. */
+:root {
+  --main: #1b1f3b;
+  --accent: #ff6b6b;
+  --light: #f1f2f8;
+  --text: #333;
+  --radius: 8px;
+}
+
+/* ---------- 2. LAYOUT (CSS Grid) ---------- */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 16px;
+  color: var(--text);
+  background: var(--light);
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+}
+
+header, footer {
+  grid-column: span 2;    /* across both columns */
+  background: var(--main);
+  color: white;
+  padding: 16px;
+  border-radius: var(--radius);
+}
+
+aside, main {
+  background: white;
+  padding: 16px;
+  border-radius: var(--radius);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- 3. ADVANCED SELECTORS ---------- */
+
+/* child: only links directly inside nav */
+nav > a {
+  color: var(--accent);
+  margin-right: 16px;
+  text-decoration: none;
+}
+
+/* pseudo-class: mouse over */
+nav > a:hover {
+  text-decoration: underline;
+}
+
+/* sibling: the first paragraph after each heading */
+h2 + p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* pseudo-element: a star before each heading */
+h2::before {
+  content: "★ ";
+  color: var(--accent);
+}
+
+/* pseudo-class: every other hobby */
+li:nth-child(odd) {
+  background: var(--light);
+}
+
+li {
+  padding: 6px;
+}
+
+/* attribute: images with alt text get round corners */
+img[alt] {
+  border-radius: var(--radius);
+}
+
+/* attribute: links that open a new tab */
+a[target="_blank"] {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* ---------- 4. FORM ---------- */
+input, textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: var(--radius);
+}
+
+/* attribute + pseudo-class: email box lights up when you type in it */
+input[type="email"]:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+}
+
+button:hover {
+  background: var(--main);
+}
+
+/* ---------- 5. PHONE (one column) ---------- */
+@media (max-width: 600px) {
+  body {
+    grid-template-columns: 1fr;
+  }
+
+  header, footer {
+    grid-column: span 1;
+  }
+}
