@@ -1,0 +1,977 @@
+// Brand colors
+$primary-color: #173f35;
+$primary-dark: #102e27;
+$secondary-color: #dce8df;
+$accent-color: #c5a572;
+
+// Text colors
+$text-color: #242b27;
+$text-light: #777f79;
+$white: #ffffff;
+$background-color: #f7f8f6;
+$border-color: #e5e9e5;
+
+// Spacing
+$spacing-xs: 8px;
+$spacing-sm: 12px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 40px;
+$spacing-2xl: 64px;
+
+// Layout
+$container-width: 1200px;
+$border-radius: 12px;
+$border-radius-lg: 20px;
+
+// Transitions
+$transition: 0.3s ease;
+4. styles/_base.scss
+scss
+@use "variables" as v;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 30px;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: v.$text-color;
+  background-color: v.$white;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: v.$secondary-color;
+  color: v.$primary-dark;
+}
+
+.container {
+  width: min(90%, v.$container-width);
+  margin-inline: auto;
+}
+5. styles/_header.scss
+scss
+@use "variables" as v;
+
+.header {
+  width: 100%;
+  min-height: 88px;
+  padding: 20px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: v.$white;
+
+  &__logo {
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: v.$primary-color;
+    white-space: nowrap;
+
+    span {
+      color: v.$accent-color;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  &__link {
+    font-size: 14px;
+    font-weight: 500;
+    color: v.$text-light;
+    transition: color v.$transition;
+
+    &:hover,
+    &--active {
+      color: v.$primary-color;
+    }
+  }
+
+  &__button {
+    padding: 12px 20px;
+    background: v.$primary-color;
+    color: v.$white;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background v.$transition;
+
+    &:hover {
+      background: v.$primary-dark;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .header {
+    flex-wrap: wrap;
+    padding: 20px 5%;
+
+    &__nav {
+      order: 3;
+      width: 100%;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    &__button {
+      padding: 10px 13px;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .header {
+    &__nav {
+      gap: 14px;
+    }
+
+    &__link {
+      font-size: 12px;
+    }
+
+    &__logo {
+      font-size: 23px;
+    }
+  }
+}
+6. styles/_hero.scss
+scss
+@use "variables" as v;
+
+.hero {
+  padding: 65px 6% 110px;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 60px;
+  background: v.$background-color;
+
+  &__content {
+    max-width: 530px;
+  }
+
+  &__subtitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: v.$primary-color;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+
+    span {
+      width: 25px;
+      height: 2px;
+      background: v.$accent-color;
+    }
+  }
+
+  &__title {
+    color: v.$primary-color;
+    font-size: clamp(42px, 5vw, 68px);
+    line-height: 1.08;
+    letter-spacing: -3px;
+    font-weight: 700;
+
+    em {
+      color: v.$accent-color;
+      font-family: Georgia, serif;
+      font-weight: 400;
+    }
+  }
+
+  &__description {
+    max-width: 410px;
+    margin-top: 25px;
+    color: v.$text-light;
+    font-size: 16px;
+    line-height: 1.9;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 22px;
+    background: v.$primary-color;
+    color: v.$white;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background v.$transition;
+
+    &:hover {
+      background: v.$primary-dark;
+    }
+
+    span {
+      font-size: 18px;
+    }
+  }
+
+  &__secondary {
+    font-size: 13px;
+    font-weight: 600;
+    color: v.$primary-color;
+    border-bottom: 1px solid v.$accent-color;
+    padding-bottom: 4px;
+  }
+
+  &__stats {
+    display: flex;
+    gap: 35px;
+    margin-top: 55px;
+    padding-top: 25px;
+    border-top: 1px solid v.$border-color;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    strong {
+      color: v.$primary-color;
+      font-size: 23px;
+      line-height: 1.3;
+    }
+
+    span {
+      color: v.$text-light;
+      font-size: 11px;
+    }
+  }
+
+  &__visual {
+    position: relative;
+    min-width: 0;
+  }
+
+  &__image {
+    width: 100%;
+    height: 490px;
+    object-fit: cover;
+    border-radius: v.$border-radius-lg;
+  }
+
+  &__image-label {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 18px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+
+    strong,
+    span {
+      display: block;
+    }
+
+    strong {
+      font-size: 13px;
+      color: v.$primary-color;
+    }
+
+    div span {
+      font-size: 11px;
+      color: v.$text-light;
+    }
+  }
+
+  &__image-dot {
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+    background: #6b9e79;
+    border-radius: 50%;
+  }
+
+  &__badge {
+    position: absolute;
+    top: 25px;
+    right: -20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: v.$white;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+
+    > span {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      background: v.$secondary-color;
+      color: v.$primary-color;
+      border-radius: 8px;
+      font-size: 24px;
+    }
+
+    strong,
+    small {
+      display: block;
+    }
+
+    strong {
+      font-size: 12px;
+    }
+
+    small {
+      margin-top: 3px;
+      color: v.$text-light;
+      font-size: 10px;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .hero {
+    gap: 35px;
+    padding-inline: 5%;
+
+    &__image {
+      height: 410px;
+    }
+
+    &__badge {
+      right: -8px;
+    }
+
+    &__stats {
+      gap: 20px;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 55px 5% 85px;
+    gap: 45px;
+
+    &__content {
+      max-width: 600px;
+    }
+
+    &__title {
+      letter-spacing: -2px;
+    }
+
+    &__image {
+      height: 380px;
+    }
+
+    &__badge {
+      right: 12px;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .hero {
+    &__stats {
+      gap: 15px;
+    }
+
+    &__stat strong {
+      font-size: 18px;
+    }
+
+    &__stat span {
+      font-size: 10px;
+    }
+
+    &__image {
+      height: 300px;
+    }
+
+    &__image-label {
+      left: 10px;
+      bottom: 10px;
+    }
+
+    &__badge {
+      top: 10px;
+      right: 10px;
+      padding: 10px;
+    }
+  }
+}
+7. styles/_search.scss
+scss
+@use "variables" as v;
+
+.search {
+  position: relative;
+  z-index: 2;
+  width: 88%;
+  max-width: 1180px;
+  margin: -45px auto 0;
+  padding: 30px;
+  background: v.$white;
+  border-radius: v.$border-radius-lg;
+  box-shadow: 0 15px 50px rgba(24, 50, 37, 0.09);
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    background: v.$secondary-color;
+    color: v.$primary-color;
+    border-radius: 10px;
+    font-size: 28px;
+  }
+
+  &__heading h2 {
+    color: v.$primary-color;
+    font-size: 17px;
+  }
+
+  &__heading p {
+    color: v.$text-light;
+    font-size: 12px;
+  }
+
+  &__form {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr auto;
+    gap: 15px;
+    align-items: end;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    > span {
+      font-size: 12px;
+      font-weight: 700;
+      color: v.$text-color;
+    }
+
+    input,
+    select {
+      width: 100%;
+      min-width: 0;
+      padding: 13px 12px;
+      background: v.$background-color;
+      color: v.$text-color;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      outline: none;
+      font-size: 12px;
+      transition: border-color v.$transition;
+
+      &:focus {
+        border-color: v.$primary-color;
+      }
+    }
+  }
+
+  &__button {
+    padding: 14px 22px;
+    background: v.$primary-color;
+    color: v.$white;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background v.$transition;
+
+    &:hover {
+      background: v.$primary-dark;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .search {
+    &__form {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    &__button {
+      min-height: 44px;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .search {
+    width: 92%;
+    padding: 22px 16px;
+
+    &__form {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+8. styles/_properties.scss
+scss
+@use "variables" as v;
+
+.properties {
+  padding: 100px 6%;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 30px;
+    margin-bottom: 35px;
+  }
+
+  &__eyebrow {
+    margin-bottom: 12px;
+    color: v.$accent-color;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+
+  &__title {
+    color: v.$primary-color;
+    font-size: clamp(30px, 4vw, 43px);
+    line-height: 1.2;
+    letter-spacing: -1.5px;
+
+    em {
+      color: v.$accent-color;
+      font-family: Georgia, serif;
+      font-weight: 400;
+    }
+  }
+
+  &__description {
+    margin-top: 12px;
+    color: v.$text-light;
+    font-size: 14px;
+  }
+
+  &__view-all {
+    flex-shrink: 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid v.$accent-color;
+    color: v.$primary-color;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+  }
+}
+
+.property-card {
+  min-width: 0;
+  overflow: hidden;
+  background: v.$white;
+  border: 1px solid v.$border-color;
+  border-radius: v.$border-radius;
+  transition: transform v.$transition, box-shadow v.$transition;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(23, 63, 53, 0.1);
+  }
+
+  &__visual {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  &:hover &__image {
+    transform: scale(1.04);
+  }
+
+  &__tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 7px 12px;
+    background: v.$white;
+    color: v.$primary-color;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  &__favorite {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: v.$white;
+    color: v.$primary-color;
+    font-size: 23px;
+    transition: color v.$transition, background v.$transition;
+
+    &[aria-pressed="true"] {
+      background: #fff0f0;
+      color: #c43d4b;
+    }
+  }
+
+  &__content {
+    padding: 22px;
+  }
+
+  &__location {
+    margin-bottom: 9px;
+    color: v.$text-light;
+    font-size: 11px;
+  }
+
+  &__title {
+    margin-bottom: 8px;
+    color: v.$primary-color;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  &__price {
+    color: v.$primary-color;
+    font-size: 22px;
+    font-weight: 800;
+
+    small {
+      color: v.$text-light;
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 16px 0;
+    border-top: 1px solid v.$border-color;
+    border-bottom: 1px solid v.$border-color;
+
+    span {
+      color: v.$text-light;
+      font-size: 11px;
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 18px;
+    color: v.$primary-color;
+    font-size: 12px;
+    font-weight: 700;
+
+    span {
+      font-size: 18px;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .properties {
+    padding-inline: 5%;
+
+    &__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .properties {
+    padding-top: 75px;
+    padding-bottom: 75px;
+
+    &__top {
+      align-items: start;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .property-card {
+    &__image {
+      height: 260px;
+    }
+  }
+}
+9. styles/_about.scss
+Krijo një file të ri me emrin _about.scss.
+
+scss
+@use "variables" as v;
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 70px;
+  padding: 80px 8%;
+  background: v.$background-color;
+
+  &__visual {
+    overflow: hidden;
+    border-radius: v.$border-radius-lg;
+  }
+
+  &__visual img {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+  }
+
+  &__content {
+    max-width: 500px;
+  }
+
+  &__eyebrow {
+    margin-bottom: 15px;
+    color: v.$accent-color;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+
+  &__title {
+    color: v.$primary-color;
+    font-size: clamp(32px, 4vw, 45px);
+    line-height: 1.2;
+    letter-spacing: -1.5px;
+
+    em {
+      color: v.$accent-color;
+      font-family: Georgia, serif;
+      font-weight: 400;
+    }
+  }
+
+  &__description {
+    margin: 22px 0 28px;
+    color: v.$text-light;
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  &__feature {
+    display: flex;
+    gap: 18px;
+    margin-top: 22px;
+
+    > span {
+      color: v.$accent-color;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    h3 {
+      color: v.$primary-color;
+      font-size: 14px;
+    }
+
+    p {
+      margin-top: 5px;
+      color: v.$text-light;
+      font-size: 12px;
+    }
+  }
+
+  &__button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 14px 20px;
+    background: v.$primary-color;
+    color: v.$white;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: background v.$transition;
+
+    &:hover {
+      background: v.$primary-dark;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .about {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 65px 5%;
+
+    &__visual img {
+      height: 350px;
+    }
+  }
+}
+
+scss
+@use "variables" as v;
+
+.contact {
+  padding: 90px 20px;
+  text-align: center;
+  background: v.$primary-color;
+  color: v.$white;
+
+  &__eyebrow {
+    margin-bottom: 18px;
+    color: v.$accent-color;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+
+  &__title {
+    font-size: clamp(35px, 5vw, 55px);
+    line-height: 1.15;
+    letter-spacing: -2px;
+
+    em {
+      color: v.$accent-color;
+      font-family: Georgia, serif;
+      font-weight: 400;
+    }
+  }
+
+  &__description {
+    max-width: 450px;
+    margin: 20px auto 28px;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 14px;
+  }
+
+  &__button {
+    display: inline-block;
+    padding: 15px 23px;
+    background: v.$white;
+    color: v.$primary-color;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: background v.$transition;
+
+    &:hover {
+      background: v.$secondary-color;
+    }
+  }
+}
+
+scss
+@use "variables" as v;
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 30px 6%;
+  background: v.$white;
+
+  &__logo {
+    color: v.$primary-color;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -1px;
+
+    span {
+      color: v.$accent-color;
+    }
+  }
+
+  &__text,
+  &__copyright {
+    color: v.$text-light;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
