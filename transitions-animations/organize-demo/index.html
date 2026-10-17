@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Organize demo · BEM + CSS files</title>
+
+  <!-- One file per job. Order matters: base first, motion last. -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/card.css">
+  <link rel="stylesheet" href="css/motion.css">
+</head>
+<body>
+  <!-- BEM: block = card, elements = card__something, modifier = --dark -->
+  <div class="card">
+    <img class="card__photo" src="https://picsum.photos/300" alt="Photo of Alex">
+    <h2 class="card__title">Alex Smith</h2>
+    <p class="card__text">Web developer in training. Loves football and music.</p>
+    <a class="card__button" href="#">Contact</a>
+    <a class="card__button card__button--dark" href="#">GitHub</a>
+  </div>
+</body>
+</html>

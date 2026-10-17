@@ -1,0 +1,16 @@
+/* ---------- MOTION: everything that moves ---------- */
+.card__button {
+  transition: transform 0.3s;
+}
+
+.card__button:hover {
+  transform: translateY(-4px);
+}
+
+.card__photo {
+  transition: transform 0.5s;
+}
+
+.card__photo:hover {
+  transform: rotate(-5deg) scale(1.1);
+}
