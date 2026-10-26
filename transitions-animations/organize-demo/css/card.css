@@ -1,0 +1,40 @@
+/* ---------- CARD (BEM block) ---------- */
+
+/* Block: the whole card */
+.card {
+  max-width: 320px;
+  margin: 0 auto;
+  background: white;
+  padding: 24px;
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+/* Elements: parts of the card (two underscores) */
+.card__photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.card__title {
+  margin: 12px 0 4px;
+}
+
+.card__text {
+  color: #555;
+}
+
+.card__button {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+/* Modifier: a different version of an element (two dashes) */
+.card__button--dark {
+  background: var(--main);
+}

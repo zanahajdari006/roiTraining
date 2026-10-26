@@ -1,0 +1,15 @@
+/* ---------- BASE: colors and the whole page ---------- */
+:root {
+  --main: #1b1f3b;
+  --accent: #ff6b6b;
+  --light: #f1f2f8;
+  --radius: 8px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--light);
+  color: var(--main);
+  margin: 0;
+  padding: 40px 16px;
+}

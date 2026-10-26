@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice · FizzBuzz (solution)</title>
+  <style>
+    /* ---------- Page look ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 16px;
+      background: #f1f2f8;
+      color: #1b1f3b;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .hint {
+      color: #6b7080;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>FizzBuzz: solution</h1>
+    <div class="hint">Try it yourself first! (Slide 12)</div>
+
+    <div class="box">
+      <div class="hint">CONSOLE — press F12 (or right-click, Inspect) and open the Console tab.</div>
+      FizzBuzz prints first, then the stretch task.
+    </div>
+  </div>
+
+  <script>
+    // ---------- FIZZBUZZ ----------
+    // The "both" check must come FIRST: 15 is also a multiple of 3.
+    // If the % 3 check came first, 15 would print 'Fizz' and we'd never reach 'FizzBuzz'.
+    for (let i = 1; i <= 15; i++) {
+      if (i % 3 === 0 && i % 5 === 0) {
+        console.log('FizzBuzz');
+      } else if (i % 3 === 0) {
+        console.log('Fizz');
+      } else if (i % 5 === 0) {
+        console.log('Buzz');
+      } else {
+        console.log(i);
+      }
+    }
+    // Also correct: if (i % 15 === 0) for the first check,
+    // because a number that divides by both 3 and 5 also divides by 15.
+
+
+    // ---------- STRETCH: the slider, clicked 6 times ----------
+    console.log('--- Stretch ---');
+    const totalSlides = 4;
+    let current = 1;
+
+    for (let click = 1; click <= 6; click++) {
+      current++;
+      if (current > totalSlides) {
+        current = 1;
+      }
+      console.log('Slide ' + current);   // Slide 2, 3, 4, 1, 2, 3
+    }
+  </script>
+</body>
+</html>

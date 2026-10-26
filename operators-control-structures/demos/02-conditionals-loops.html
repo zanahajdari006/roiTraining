@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo 02 · Conditionals and loops</title>
+  <style>
+    /* ---------- Page look ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 16px;
+      background: #f1f2f8;
+      color: #1b1f3b;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .hint {
+      color: #6b7080;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Conditionals and loops</h1>
+    <div class="hint">Choose a path, then repeat work. (Slides 7 and 8)</div>
+
+    <div class="box">
+      <div class="hint">CONSOLE — press F12 (or right-click, Inspect) and open the Console tab.</div>
+      Everything in this demo prints there. Keep the code open in VS Code next to it.
+    </div>
+  </div>
+
+  <script>
+    // ---------- 1. IF / ELSE IF / ELSE: choose a path ----------
+    // JavaScript checks from top to bottom. The FIRST true branch runs,
+    // then the whole chain is finished.
+    console.log('--- if / else ---');
+    let temperature = 30;
+
+    if(temperature > 25){
+      console.log('T-shirt weather');
+    } else if(temperature > 10){
+      console.log('Jacket weather');
+    }else {
+      console.log ('Its cold!');
+    }
+
+  
+
+    // TRY: set temperature to 30, then 5, then exactly 25.
+
+
+    // ---------- 2. SWITCH: one variable, exact values ----------
+    // switch compares with === . break leaves the switch.
+    // default runs when no case matched (like else).
+    console.log('--- switch ---');
+    let day = 'Sat';
+
+    switch (day) {
+      case 'Sat':                    // no code and no break: falls through to 'Sun'
+      case 'Sun':
+        console.log('Weekend!');
+        break;
+      default:
+        console.log('Weekday');
+    }
+
+    let nota = 1;
+    switch (nota) {
+      case 1:
+        console.log('Keni Kaluar');
+        break;
+      case 2:
+        console.log('Shume mire');
+        break;
+      case 3:
+        console.log('Mire');
+        break;
+      case 4:
+        console.log('Deri qitu ka me ardhe');
+        break;
+      case 5:
+        console.log('Nuk Keni Kaluar');
+        break;
+      default:
+        console.log('Nota inválida');
+    }
+
+    // TRY: set day to 'Mon'. Then delete the break and set day back to 'Sat'.
+
+
+    // ---------- 3. FOR: I know how many times ----------
+    // for (start; check; step)
+    console.log('--- for ---');
+    for (let i = 1; i <= 3; i++) {
+      console.log('Lap ' + i);
+    }
+
+
+    // ---------- 4. WHILE: repeat while a condition stays true ----------
+    // It checks FIRST, so it can run zero times.
+    console.log('--- while ---');
+    let fuel = 3;
+
+    while (fuel > 0) {
+      console.log('Driving, fuel: ' + fuel);
+      fuel--;                        // without this line the loop never ends (infinite loop!)
+    }
+
+
+    // ---------- 5. DO...WHILE: run once, then check ----------
+    // It checks LAST, so it always runs at least once.
+    console.log('--- do...while ---');
+    let n = 10;
+
+    do {
+      console.log('Runs once: ' + n);   // prints once, even though 10 < 5 is false
+      n++;
+    } while (n < 5);
+  </script>
+</body>
+</html>

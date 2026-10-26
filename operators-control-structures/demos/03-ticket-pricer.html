@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo 03 · Cinema ticket pricer</title>
+  <style>
+    /* ---------- Page look ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 16px;
+      background: #f1f2f8;
+      color: #1b1f3b;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .hint {
+      color: #6b7080;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Cinema ticket pricer</h1>
+    <div class="hint">if / else with comparison and logical operators. (Slide 9)</div>
+
+    <div class="box">
+      <div class="hint">THE RULES</div>
+      A ticket costs 6€. Kids under 12 and seniors from 65 pay half.
+      Students under 26 get 2€ off. Everyone else pays full price.
+    </div>
+
+    <div class="box">
+      <div class="hint">CONSOLE — press F12 (or right-click, Inspect) and open the Console tab.</div>
+      Change <b>age</b> and <b>isStudent</b> in the code, save, and reload.
+    </div>
+  </div>
+
+  <script>
+  const basePrice = 6;
+  let age = 20;
+  let isStudent = false;
+  let price = basePrice;
+
+  if(age<12 || age >= 65){
+    price = price / 2;
+  }else if(isStudent && age < 26){
+    price -= 2;
+  }
+
+  let fullPrice = price === basePrice;
+  console.log('Ticket: ' + price + '€   Full price? ' + fullPrice);
+
+    // TEST IT (change age / isStudent, then reload):
+    //   age 20, student       -> Ticket: 4€   Full price? false
+    //   age 8                 -> Ticket: 3€   Full price? false
+    //   age 70                -> Ticket: 3€   Full price? false
+    //   age 30, not student   -> Ticket: 6€   Full price? true
+    //   age 12                -> Ticket: 6€   (12 < 12 is false! Use <= if 12 should pay half)
+  </script>
+</body>
+</html>
