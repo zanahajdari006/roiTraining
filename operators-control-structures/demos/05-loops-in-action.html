@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo 05 · Loops in action</title>
+  <style>
+    /* ---------- Page look ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 16px;
+      background: #f1f2f8;
+      color: #1b1f3b;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .hint {
+      color: #6b7080;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Loops in action</h1>
+    <div class="hint">for, while and do...while in three mini-programs. (Slide 11)</div>
+
+    <div class="box">
+      <div class="hint">HEADS UP — this page asks for a PIN as soon as it opens.</div>
+      The right PIN is 1234. Try a wrong one first, then reload and get it wrong three times.
+    </div>
+
+    <div class="box">
+      <div class="hint">CONSOLE — press F12 (or right-click, Inspect) and open the Console tab.</div>
+      Everything in this demo prints there.
+    </div>
+  </div>
+
+  <script>
+    // ---------- for: the 7 times table ----------
+    // We know the count (5 rows), so: for.
+    // * happens before +, so 7 * i is calculated first, then glued into the text.
+   
+    for(let i = 1; i <= 10; i++){
+      console.log('7 x ' + i + ' = ' + 7 * i);
+    }
+
+
+    // ---------- while: save 15€ a week until you reach 100€ ----------
+    // We don't know the count, only when to stop, so: while.
+    let savings = 50;
+    let week = 0;
+    while(savings < 100){
+      savings += 15;
+      week++;
+    }
+    console.log(week + ' weeks ' + savings + '€ saved');
+
+
+    // ---------- do...while: ask for the PIN at least once ----------
+    // We can't check a PIN before we've asked for it, so: do...while.
+    // prompt() is a built-in browser command: it shows a box and gives back
+    // what the user typed, ALWAYS as a string. That's why we compare with '1234'.
+    let pin;          // no value yet: undefined
+    let tries = 0;
+    do {
+      pin = prompt('Enter your PIN');
+      tries++;
+    } while (pin !== '1234' && tries < 3);   // ask again only if wrong AND tries left
+
+    if (pin === '1234') {
+      console.log('Unlocked!');
+    } else {
+      console.log('Card blocked');
+    }
+  </script>
+</body>
+</html>
