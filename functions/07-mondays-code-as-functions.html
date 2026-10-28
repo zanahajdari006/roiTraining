@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 15 · Demo 03: Return values</title>
+</head>
+<body>
+  <h1>Demo 03: Return values</h1>
+  <p>Slide 6. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // return hands a value back to the code that called the function.
+    function add(a, b) {
+      return a + b;
+    }
+
+    const total = add(2, 3);        // the call becomes 5, then 5 is stored
+    console.log(total);             // 5
+    console.log(add(10, total));    // 15: a return value used as an argument
+
+    // console.log only SHOWS a value. Nothing comes back.
+    function showSum(a, b) {
+      console.log(a + b);
+    }
+
+    const result = showSum(2, 3);   // prints 5
+    console.log(result);            // undefined: showSum has no return
+
+    // return also ENDS the function: lines after it never run.
+    function test() {
+      return 'first';
+      console.log('Will I run?');   // never runs (VS Code greys it out)
+    }
+
+    console.log(test());            // first
+  </script>
+</body>
+</html>

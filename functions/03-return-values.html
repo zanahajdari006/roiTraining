@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 15 · Demo 04: Declarations vs expressions</title>
+</head>
+<body>
+  <h1>Demo 04: Declarations vs expressions</h1>
+  <p>Slide 7. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // Demo 03's add, rewritten as a function EXPRESSION:
+    // an anonymous function (no name of its own) stored in a const.
+    // It ends with a semicolon, like any other assignment.
+    const add = function (a, b) {
+      return a + b;
+    };
+
+    console.log(add(2, 3));       // 5: called exactly like a declaration
+    console.log(typeof add);      // function: a function is a value
+
+    // HOISTING: a function DECLARATION can be called
+    // before the line where it's written...
+    console.log(multiply(4, 5));  // 20
+
+    function multiply(a, b) {
+      return a * b;
+    }
+
+    // ...but a function EXPRESSION can't. Uncomment the next line to see:
+    // ReferenceError: Cannot access 'divide' before initialization
+    // console.log(divide(10, 2));
+
+    const divide = function (a, b) {
+      return a / b;
+    };
+
+    console.log(divide(10, 2));   // 5: fine, because the call comes after the definition
+  </script>
+</body>
+</html>
