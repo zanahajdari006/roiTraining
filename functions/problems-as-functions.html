@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 15 · Demo 07: Monday's code as functions</title>
+</head>
+<body>
+  <h1>Demo 07: Monday's code as functions</h1>
+  <p>Slide 10. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // FizzBuzz for ONE number.
+    // Each return ends the function, so we don't need else.
+    function fizzBuzz(n) {
+      if (n % 3 === 0 && n % 5 === 0) {
+        return 'FizzBuzz';
+      }
+      if (n % 3 === 0) {
+        return 'Fizz';
+      }
+      if (n % 5 === 0) {
+        return 'Buzz';
+      }
+      return n;
+    }
+
+    // The loop only calls the function.
+    for (let i = 1; i <= 15; i++) {
+      console.log(fizzBuzz(i));
+    }
+
+    // Monday's slider rule, as a one-line arrow function.
+    const nextSlide = (current, total) => current % total + 1;
+
+    console.log(nextSlide(2, 5));   // 3
+    console.log(nextSlide(5, 5));   // 1: wraps around to the first slide
+  </script>
+</body>
+</html>

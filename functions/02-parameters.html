@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 15 · Demo 05: Arrow functions</title>
+</head>
+<body>
+  <h1>Demo 05: Arrow functions</h1>
+  <p>Slide 8. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // How we got here (edit ONE function in place: a second const double is an error).
+    //
+    // Function expression:
+    //   const double = function (n) {
+    //     return n * 2;
+    //   };
+    //
+    // Arrow function: delete the word function, add => after the brackets:
+    //   const double = (n) => {
+    //     return n * 2;
+    //   };
+    //
+    // Short form: one expression, so no braces and no return.
+    // The value after the arrow is returned automatically (implicit return).
+    const double = (n) => n * 2;
+
+    console.log(double(4));        // 8
+
+    // No parameters: empty round brackets.
+    const sayHi = () => 'Hi!';
+    console.log(sayHi());          // Hi!
+
+    // Several parameters: commas, as always.
+    const add = (a, b) => a + b;
+    console.log(add(2, 3));        // 5
+
+    // The trap: curly braces mean a full body,
+    // so you must write return yourself.
+    const triple = (n) => { n * 3 };
+    console.log(triple(4));        // undefined: no return!
+
+    const tripleFixed = (n) => {
+      return n * 3;
+    };
+    console.log(tripleFixed(4));   // 12
+  </script>
+</body>
+</html>

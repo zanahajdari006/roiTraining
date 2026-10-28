@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 15 · Demo 02: Parameters and arguments</title>
+</head>
+<body>
+  <h1>Demo 02: Parameters and arguments</h1>
+  <p>Slide 5. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // firstName is a PARAMETER: a placeholder in the definition.
+    function greet(firstName) {
+      console.log('Hello, ' + firstName + '!');
+    }
+
+    // 'Arta' and 'Drin' are ARGUMENTS: the actual values in the call.
+    greet('Arta');   // Hello, Arta!
+    greet('Drin');   // Hello, Drin!
+    greet();         // Hello, undefined!  (no argument, so firstName is undefined)
+
+    // Several parameters are separated by commas.
+    // city has a DEFAULT value, used when no argument is passed.
+    function introduce(firstName, city = 'Prishtina') {
+      console.log(firstName + ' lives in ' + city);
+    }
+
+    introduce('Era', 'Prizren');    // Era lives in Prizren
+    introduce('Besa');              // Besa lives in Prishtina
+    introduce('Peja', 'Liridon');   // Peja lives in Liridon: order matters!
+
+    // Parameters only exist inside their own function.
+    // Uncomment the next line to see: ReferenceError: firstName is not defined
+    // console.log(firstName);
+  </script>
+</body>
+</html>

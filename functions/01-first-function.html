@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 15 · Demo 06: The coffee machine's buttons</title>
+</head>
+<body>
+  <h1>Demo 06: The coffee machine's buttons</h1>
+  <p>Slide 9. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // The rules, in plain sentences first:
+    // a small coffee costs 1.50€, a large one costs 2€.
+    // The machine checks you paid enough, then tells you your change.
+
+    // Declaration: the price depends on the size.
+    // function getPrice(size) {
+    //   if (size === 'large') {
+    //     return 2;
+    //   }
+    //   return 1.5;
+    // }
+
+    // // Arrow function: the change to give back.
+    // const getChange = (paid, price) => paid - price;
+
+    // // Expression: the order button uses the other two.
+    // const orderCoffee = function (size, paid) {
+    //   const price = getPrice(size);
+    //   if (paid < price) {
+    //     return 'Not enough money';
+    //   }
+    //   return 'Enjoy! Your change: ' + getChange(paid, price) + '€';
+    // };
+
+    // console.log(orderCoffee('large', 5));   // Enjoy! Your change: 3€
+    // console.log(orderCoffee('small', 2));   // Enjoy! Your change: 0.5€
+    // console.log(orderCoffee('large', 1));   // Not enough money
+
+    function getPrice(size){
+      if(size === 'large'){
+        return 2;
+       }else if(size === 'medium'){
+        return 1.5;
+       }else{
+        return 1;
+       }
+    }
+
+    function getChange(paid, price){
+      return paid - price;
+    }
+
+    function orderCoffee(size, paid){
+      const price = getPrice(size);
+      if(paid < price){
+        return 'Not enough money';
+      }else{
+        return 'Enjoy! Your change: ' + getChange(paid, price) + '€';
+      }
+    }
+
+    console.log(orderCoffee('large',5));
+    console.log(orderCoffee('medium',2));
+    console.log(orderCoffee('small',1));
+  </script>
+</body>
+</html>
