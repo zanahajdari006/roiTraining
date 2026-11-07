@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 16 · Demo 01: Global vs local scope</title>
+</head>
+<body>
+  <h1>Demo 01: Global vs local scope</h1>
+  <p>Slide 4. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // SCOPE = the part of your code where a variable can be seen and used.
+    // Think of a house: from inside a room you can see out into the hallway,
+    // but from the hallway you can't see into the room.
+
+    // 1. GLOBAL scope: declared outside every function.
+    //    The whole file can see it, every function included.
+    const school = 'ROI Academy';
+
+    function welcome() {
+      console.log('Welcome to ' + school);   // a function can read a global
+    }
+
+    welcome();                    // Welcome to ROI Academy
+    console.log(school);          // ROI Academy
+
+    // 2. LOCAL scope: declared inside a function.
+    //    It only exists inside that function.
+    function showStudent() {
+      const student = 'Arta';     // local to showStudent
+      console.log(student + ' studies at ' + school);
+    }
+
+    showStudent();                // Arta studies at ROI Academy
+    //console.log(student);          // ReferenceError: student is not defined
+
+    // Outside the function, student doesn't exist.
+    // Uncomment the next line to see: ReferenceError: student is not defined
+    // console.log(student);
+
+    // 3. Every function has its OWN room, so the same name never clashes.
+    function countApples() {
+      const count = 3;
+      console.log('Apples: ' + count);
+    }
+
+    function countPears() {
+      const count = 7;
+      console.log('Pears: ' + count);
+    }
+
+    countApples();                // Apples: 3
+    countPears();                 // Pears: 7
+
+    // 4. The risk of globals: ANY line of code can change them.
+    let score = 0;                // global
+
+    function addPoint() {
+      score = score + 1;
+    }
+
+    addPoint();
+    addPoint();
+    addPoint();
+    console.log(score);           // 2
+
+    score = 1000;                 // oops: some other code, far away in the file
+    console.log(score);           // 1000: we lost the real score
+
+    // THE RULE: inside can see out. Outside can't see in.
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 17 · Demo 07: One constructor inherits from another</title>
+</head>
+<body>
+  <h1>Demo 07: One constructor inherits from another</h1>
+  <p>Slide 10. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // INHERITANCE between constructors: a Mentor is a Student, plus a little more.
+    // It takes two lines:
+    //   A. reuse the parent's setup:   Student.call(this, name, score)
+    //   B. link the two prototypes:    Object.setPrototypeOf(Mentor.prototype, Student.prototype)
+
+    // The parent: the same Student as Demo 06.
+    function Student(name, score) {
+      this.name = name;
+      this.score = score;
+    }
+
+    Student.prototype.passed = function () {
+      return this.score >= 70;
+    };
+
+    // 1. The child constructor.
+    function Mentor(name, score, subject) {
+      Student.call(this, name, score);   // A. run Student's setup lines on THIS new mentor
+      this.subject = subject;            //    then add what only mentors have
+    }
+
+    // 2. Link the chains: Mentor.prototype → Student.prototype
+    Object.setPrototypeOf(Mentor.prototype, Student.prototype);   // B.
+
+    // 3. A method that only mentors have.
+    Mentor.prototype.help = function () {
+      return this.name + ' can help with ' + this.subject;
+    };
+
+    // 4. Use it.
+    const era = new Mentor('Era', 95, 'JavaScript');
+
+    console.log(era);             // Mentor {name: 'Era', score: 95, subject: 'JavaScript'}
+    console.log(era.help());      // Era can help with JavaScript   (found on Mentor.prototype)
+    console.log(era.passed());    // true                           (inherited from Student.prototype)
+
+    // The whole chain, link by link:
+    // era → Mentor.prototype → Student.prototype → Object.prototype → null
+    console.log(Object.getPrototypeOf(era) === Mentor.prototype);                 // true
+    console.log(Object.getPrototypeOf(Mentor.prototype) === Student.prototype);   // true
+
+    // 5. A mentor IS a student, so she fits in the same roster as everyone else.
+    const roster = [new Student('Arta', 92), new Student('Drin', 64), era];
+    const passedNames = roster
+      .filter((person) => person.passed())
+      .map((person) => person.name);
+    console.log(passedNames);     // ['Arta', 'Era']
+
+    // The chain only goes UP: a plain student has no help method.
+    const arta = roster[0];
+    // Uncomment the next line to see: TypeError: arta.help is not a function
+    // console.log(arta.help());
+  </script>
+</body>
+</html>

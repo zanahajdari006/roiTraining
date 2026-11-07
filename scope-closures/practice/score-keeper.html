@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice · The score keeper</title>
+  <style>
+    /* ---------- Page look ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 16px;
+      background: #f1f2f8;
+      color: #1b1f3b;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .hint {
+      color: #6b7080;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+    }
+
+    pre {
+      margin: 0;
+      font-size: 16px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Practice: The score keeper</h1>
+    <div class="hint">10 minutes. Write your code inside the script tag at the bottom of this file. (Slide 11)</div>
+
+    <div class="box">
+      <div class="hint">THE TASK</div>
+      Write a function <b>createScoreKeeper()</b>.<br>
+      It keeps a <b>private</b> score that starts at 0, and it <b>returns a function</b>.<br>
+      Each time you call that returned function with some points, it adds them to the score
+      and returns the new score.<br>
+      Every score keeper keeps its <b>own</b> score.
+    </div>
+
+    <div class="box">
+      <div class="hint">EXPECTED OUTPUT (one per line)</div>
+      10 15 7 35
+    </div>
+
+    <div class="box">
+      <div class="hint">STRETCH (finished early?)</div>
+      Write <b>createPasswordChecker(password, maxTries)</b>. It returns a function that takes a guess:<br>
+      right guess &rarr; <b>Welcome!</b><br>
+      wrong guess &rarr; one try is used up &rarr; <b>Wrong password. Tries left: N</b><br>
+      no tries left &rarr; every guess, even the right one &rarr; <b>Locked. Too many wrong tries.</b>
+      <div class="hint" style="margin: 16px 0 8px;">EXPECTED OUTPUT</div>
+      <pre>Wrong password. Tries left: 1
+Welcome!
+Wrong password. Tries left: 0
+Locked. Too many wrong tries.</pre>
+    </div>
+
+    <div class="box">
+      <div class="hint">CONSOLE — press F12 (or right-click, Inspect) and open the Console tab.</div>
+      Save, reload, and compare your console with the expected output.
+    </div>
+  </div>
+
+  <script>
+    // HINTS
+    //   - Follow the createCounter pattern from Demo 05.
+    //   - The score lives inside createScoreKeeper, NOT in the global scope.
+    //   - The inner function needs a parameter: points.
+    //   - Two returns: the outer function returns the inner function,
+    //     and the inner function returns the new score.
+
+    // Write createScoreKeeper below this line
+
+
+
+    // When your function is ready, uncomment these lines to test it:
+    // const arta = createScoreKeeper();
+    // const drin = createScoreKeeper();
+    // console.log(arta(10));   // 10
+    // console.log(arta(5));    // 15
+    // console.log(drin(7));    // 7
+    // console.log(arta(20));   // 35
+
+
+    // STRETCH: write createPasswordChecker below this line
+
+
+
+    // Uncomment to test:
+    // const login = createPasswordChecker('roi2026', 2);
+    // console.log(login('hello'));     // Wrong password. Tries left: 1
+    // console.log(login('roi2026'));   // Welcome!
+    // console.log(login('12345'));     // Wrong password. Tries left: 0
+    // console.log(login('roi2026'));   // Locked. Too many wrong tries.
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice · The mini shop (solution)</title>
+  <style>
+    /* ---------- Page look ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 16px;
+      background: #f1f2f8;
+      color: #1b1f3b;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .hint {
+      color: #6b7080;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Solution: The mini shop</h1>
+    <div class="hint">One possible solution. (Slide 11)</div>
+
+    <div class="box">
+      <div class="hint">CONSOLE — press F12 (or right-click, Inspect) and open the Console tab.</div>
+      Expected: the three in-stock labels, Monitor: 180 EUR, true, then the three stretch lines.
+    </div>
+  </div>
+
+  <script>
+    // 1. The blueprint: own data for every product.
+    function Product(name, price, inStock) {
+      this.name = name;
+      this.price = price;
+      this.inStock = inStock;
+    }
+
+    // 2. One shared label method, on the prototype.
+    Product.prototype.label = function () {
+      return this.name + ': ' + this.price + ' EUR';
+    };
+
+    // 3. The products: an array of Product objects.
+    const products = [
+      new Product('Laptop', 650, true),
+      new Product('Headphones', 45, false),
+      new Product('Keyboard', 30, true),
+      new Product('Monitor', 180, true)
+    ];
+
+    // 4. Keep the ones in stock, then turn each one into its label.
+    const inStockLabels = products
+      .filter((product) => product.inStock)
+      .map((product) => product.label());
+
+    // 5. The first product named Monitor.
+    const monitor = products.find((product) => product.name === 'Monitor');
+
+    console.log(inStockLabels);                             // ['Laptop: 650 EUR', 'Keyboard: 30 EUR', 'Monitor: 180 EUR']
+    console.log(monitor.label());                           // Monitor: 180 EUR
+    console.log(products[0].label === products[1].label);   // true: every product shares one label
+
+
+    // STRETCH
+    function DigitalProduct(name, price, sizeMB) {
+      Product.call(this, name, price, true);   // reuse Product's setup: always in stock
+      this.sizeMB = sizeMB;
+    }
+
+    // Link the chains: DigitalProduct.prototype → Product.prototype
+    Object.setPrototypeOf(DigitalProduct.prototype, Product.prototype);
+
+    DigitalProduct.prototype.download = function () {
+      return 'Downloading ' + this.name + ': ' + this.sizeMB + ' MB';
+    };
+
+    const course = new DigitalProduct('Course videos', 25, 850);
+
+    console.log(course.label());      // Course videos: 25 EUR   (inherited from Product.prototype)
+    console.log(course.download());   // Downloading Course videos: 850 MB
+    console.log(course.inStock);      // true
+  </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 16 · Demo 06: Bug hunt</title>
+</head>
+<body>
+  <h1>Demo 06: Bug hunt</h1>
+  <p>Slide 9. Predict each output BEFORE you run it. Then open the console: F12, then Console.</p>
+
+  <script>
+    // Three bugs, straight from today's rules. Each one runs WITHOUT an error,
+    // but prints something we didn't want. We fix them live, one at a time.
+
+    // ---------- BUG 1: a value used too early ----------
+    console.log('Discount: ' + discount + '%');   // Discount: undefined%
+    var discount = 10;
+
+    // WHY: var discount is hoisted, but its value stays on its own line.
+    // FIX: declare first, use after, and prefer const:
+    //   const discount = 10;
+    //   console.log('Discount: ' + discount + '%');   // Discount: 10%
+    // (A const used too early throws a clear ReferenceError: no silent undefined.)
+
+    // ---------- BUG 2: a "temporary" variable that wasn't ----------
+    var title = 'Scope, Hoisting & Closures';
+    const roomChanged = true;
+
+    if (roomChanged) {
+      var title = 'Notice: we moved to Room 2';
+      console.log(title);                         // Notice: we moved to Room 2
+    }
+
+    console.log('Today: ' + title);               // Today: Notice: we moved to Room 2
+
+    // WHY: var ignores blocks, so the title inside the if IS the global title.
+    // FIX: use let inside the block, so it's a new variable that lives only there:
+    //   let title = 'Notice: we moved to Room 2';
+    // Now the last line prints: Today: Scope, Hoisting & Closures
+
+    // ---------- BUG 3: the message that went missing ----------
+    var message = 'Keep practising!';
+
+    function showResult(points) {
+      if (points >= 50) {
+        var message = 'Passed!';
+      }
+      console.log(points + ' points: ' + message);
+    }
+
+    showResult(80);                               // 80 points: Passed!
+    showResult(30);                               // 30 points: undefined
+
+    // WHY: var message is hoisted to the top of showResult, so the function has
+    // its OWN message (undefined) that shadows the global one.
+    // Below 50 points it never gets a value.
+    // FIX: don't reuse the name. Start a new let from the global, then change it:
+    //   function showResult(points) {
+    //     let text = message;
+    //     if (points >= 50) {
+    //       text = 'Passed!';
+    //     }
+    //     console.log(points + ' points: ' + text);
+    //   }
+    // Now showResult(30) prints: 30 points: Keep practising!
+  </script>
+</body>
+</html>

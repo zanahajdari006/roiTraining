@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 16 · Demo 05: Closures</title>
+</head>
+<body>
+  <h1>Demo 05: Closures</h1>
+  <p>Slide 8. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // CLOSURE = a function + the variables around the place where it was created.
+    // The function carries those variables with it, like a backpack,
+    // even after the outer function has finished running.
+
+    // 1. The counter
+    function createCounter() {
+      let count = 0;              // lives in createCounter's scope
+
+      return function () {        // this inner function closes over count
+        count = count + 1;
+        return count;
+      };
+    }
+
+    const next = createCounter(); // createCounter runs and finishes here...
+    console.log(next());          // 1   ...but count is still alive in the backpack
+    console.log(next());          // 2
+    console.log(next());          // 3
+
+    // 2. Every call to createCounter packs a NEW backpack.
+    const counterA = createCounter();
+    const counterB = createCounter();
+
+    console.log(counterA());      // 1
+    console.log(counterA());      // 2
+    console.log(counterB());      // 1: B has its own count
+
+    // 3. count is PRIVATE: no code outside can read it or change it.
+    // Uncomment the next line to see: ReferenceError: count is not defined
+    // console.log(count);
+    // Compare that with the global score in Demo 01, which any line could overwrite.
+
+    // 4. Demo 04's question, answered.
+    function makeMultiplier(factor) {
+      return (n) => n * factor;   // factor goes into the backpack
+    }
+
+    const triple = makeMultiplier(3);
+    console.log(triple(5));       // 15: triple still remembers factor = 3
+  </script>
+</body>
+</html>

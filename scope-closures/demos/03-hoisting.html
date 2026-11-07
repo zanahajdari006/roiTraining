@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 16 · Demo 03: Hoisting</title>
+</head>
+<body>
+  <h1>Demo 03: Hoisting</h1>
+  <p>Slide 6. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // HOISTING: before your code runs, JavaScript scans the scope and sets up
+    // every declaration first. The NAMES go up. The VALUES stay on their line.
+
+    // 1. var: the name exists early, the value arrives later.
+    console.log(city);            // undefined: no error, but no value yet
+    var city = 'Prishtina';
+    console.log(city);            // Prishtina
+
+    // What JavaScript actually does with those lines:
+    //   var city;                // the declaration is hoisted (value: undefined)
+    //   console.log(city);       // undefined
+    //   city = 'Prishtina';      // the value is assigned on the original line
+    //   console.log(city);       // Prishtina
+
+    // 2. let and const are hoisted too, but LOCKED until their line.
+    //    That locked stretch is called the TEMPORAL DEAD ZONE (TDZ).
+    // Uncomment the next line to see: ReferenceError: Cannot access 'country' before initialization
+    // console.log(country);
+    const country = 'Kosovo';
+    console.log(country);         // Kosovo
+
+    // Compare that message with a name that was never declared at all.
+    // Uncomment the next line to see: ReferenceError: planet is not defined
+    // console.log(planet);
+
+    // 3. Function DECLARATIONS are hoisted completely, body and all.
+    console.log(square(4));       // 16: works before the line it's written on
+
+    function square(n) {
+      return n * n;
+    }
+
+    // 4. Function EXPRESSIONS follow the rules of their variable.
+    //    With const: locked in the TDZ.
+    // Uncomment the next line to see: ReferenceError: Cannot access 'double' before initialization
+    // console.log(double(4));
+    const double = (n) => n * 2;
+    console.log(double(4));       // 8
+
+    //    With var: the name is hoisted as undefined, and undefined can't be called.
+    // Uncomment the next line to see: TypeError: half is not a function
+    // console.log(half(10));
+    var half = function (n) {
+      return n / 2;
+    };
+    console.log(half(10));        // 5
+
+    // THE HABIT: declare first, use after.
+    // const by default, let when the value must change, and leave var behind.
+  </script>
+</body>
+</html>

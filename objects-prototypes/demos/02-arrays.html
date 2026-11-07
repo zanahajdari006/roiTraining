@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 17 · Demo 02: Arrays</title>
+</head>
+<body>
+  <h1>Demo 02: Arrays</h1>
+  <p>Slide 5. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // ARRAY = an ordered list of values, inside square brackets.
+    // Each value has a position number called its INDEX. Counting starts at 0.
+
+    // 1. Create an array, read items by index, check the length.
+    const students = ['Arta', 'Drim', 'Blerta'];
+
+    console.log(students[0]);           // Arta: the first item is index 0
+    console.log(students[2]);           // Blerta
+    console.log(students.length);       // 3
+    console.log(students[students.length - 1]);   // Blerta: the last item is always length - 1
+    console.log(students[3]);           // undefined: there is no index 3
+
+    // 2. Change an item, add to the end, remove from the end.
+    students[1] = 'Drin';               // fix the typo at index 1
+    students.push('Ilir');              // push adds to the END
+    console.log(students);              // ['Arta', 'Drin', 'Blerta', 'Ilir']
+
+    const last = students.pop();        // pop removes the LAST item and gives it back
+    console.log(last);                  // Ilir
+    console.log(students.length);       // 3
+    // students is a const, and we still changed what's inside. Same rule as objects.
+
+    // 3. Loop over an array.
+    // The for loop from Session 14: i counts 0, 1, 2.
+    for (let i = 0; i < students.length; i++) {
+      console.log(i + ': ' + students[i]);   // 0: Arta, then 1: Drin, then 2: Blerta
+    }
+
+    // for...of hands you each ITEM directly. No index to manage.
+    for (const name of students) {
+      console.log('Welcome, ' + name);       // Welcome, Arta / Welcome, Drin / Welcome, Blerta
+    }
+
+    // 4. An array of objects: the shape most real data has.
+    const roster = [
+      { name: 'Arta', score: 92 },
+      { name: 'Drin', score: 64 },
+      { name: 'Blerta', score: 85 }
+    ];
+
+    console.log(roster[1].name);        // Drin: the index first, then the key
+    console.log(roster[2].score);       // 85
+
+    for (const student of roster) {
+      console.log(student.name + ' scored ' + student.score);
+    }
+    // Arta scored 92 / Drin scored 64 / Blerta scored 85
+  </script>
+</body>
+</html>
