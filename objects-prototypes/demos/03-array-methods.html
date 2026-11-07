@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 17 · Demo 03: Array methods</title>
+</head>
+<body>
+  <h1>Demo 03: Array methods</h1>
+  <p>Slide 6. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // Arrays come with HIGHER-ORDER FUNCTIONS built in (Session 16).
+    // You pass in a CALLBACK, and the method calls it once for every item.
+
+    const scores = [92, 64, 85, 71];
+
+    // 1. forEach: DO something with each item. It gives nothing back.
+    scores.forEach((score) => console.log('Score: ' + score));
+    // Score: 92 / Score: 64 / Score: 85 / Score: 71
+
+    // 2. map: TRANSFORM each item. It gives back a NEW array of the same length.
+    const curved = scores.map((score) => score + 5);
+    console.log(curved);       // [97, 69, 90, 76]
+    console.log(scores);       // [92, 64, 85, 71]: the original is unchanged
+
+    // 3. filter: KEEP the items that pass a test. It gives back a NEW array, often shorter.
+    const passing = scores.filter((score) => score >= 70);
+    console.log(passing);      // [92, 85, 71]
+
+    // 4. find: get the FIRST item that passes a test. It gives back ONE item, or undefined.
+    const firstHigh = scores.find((score) => score > 80);
+    console.log(firstHigh);    // 92
+    console.log(scores.find((score) => score > 100));   // undefined: no score matched
+
+    // 5. The same methods work on an array of objects.
+    const roster = [
+      { name: 'Arta', score: 92 },
+      { name: 'Drin', score: 64 },
+      { name: 'Blerta', score: 85 },
+      { name: 'Ilir', score: 71 }
+    ];
+
+    const names = roster.map((student) => student.name);
+    console.log(names);        // ['Arta', 'Drin', 'Blerta', 'Ilir']
+
+    const needHelp = roster.filter((student) => student.score < 70);
+    console.log(needHelp);     // [{…}]   click the arrow to open it: {name: 'Drin', score: 64}
+
+    const blerta = roster.find((student) => student.name === 'Blerta');
+    console.log(blerta.score); // 85
+
+    // Common mistake: curly braces WITHOUT return.
+    // With braces, an arrow function gives back nothing unless you write return (Session 15).
+    const broken = scores.map((score) => { score + 5; });
+    console.log(broken);       // [undefined, undefined, undefined, undefined]
+    // Fix: drop the braces, (score) => score + 5, or keep them and write return score + 5;
+  </script>
+</body>
+</html>

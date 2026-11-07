@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 16 · Demo 07: A slider that remembers</title>
+</head>
+<body>
+  <h1>Demo 07: A slider that remembers</h1>
+  <p>Slide 10. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // Session 14's slider rule:  next slide = current % total + 1
+    // On Wednesday we wrapped it in a function, but WE had to keep track of current:
+    const nextSlide = (current, total) => current % total + 1;
+
+    let current = 1;
+    current = nextSlide(current, 4);
+    current = nextSlide(current, 4);
+    console.log('Old way: slide ' + current);   // Old way: slide 3
+
+    // 1. A slider that REMEMBERS its own slide: a closure.
+    function createSlider(total) {
+      let slide = 1;                     // private: lives in createSlider's scope
+
+      return function () {               // the "next" button
+        slide = slide % total + 1;       // the same rule as before
+        return 'Slide ' + slide;
+      };
+    }
+
+    const next = createSlider(4);        // 4 slides, starting on slide 1
+    console.log(next());                 // Slide 2
+    console.log(next());                 // Slide 3
+
+    // 2. A higher-order helper: press any button a number of times.
+    function repeat(times, action) {
+      for (let i = 1; i <= times; i++) {
+        console.log(action());           // action is the function we were given
+      }
+    }
+
+    const homeSlider = createSlider(4);
+    repeat(6, homeSlider);               // Slide 2, Slide 3, Slide 4, Slide 1, Slide 2, Slide 3
+    // That's the STRETCH task from Session 14's FizzBuzz practice, now in one line.
+
+    // 3. Two sliders on one page, each with its own backpack.
+    const gallery = createSlider(3);
+    console.log(gallery());              // Slide 2
+    console.log(homeSlider());           // Slide 4: it carried on from Slide 3
+  </script>
+</body>
+</html>

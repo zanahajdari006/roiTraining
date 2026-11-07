@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 16 · Demo 04: Functions are first-class citizens</title>
+</head>
+<body>
+  <h1>Demo 04: Functions are first-class citizens</h1>
+  <p>Slide 7. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // FIRST-CLASS CITIZEN: functions are values, just like numbers and strings.
+    // Anything you can do with a value, you can do with a function.
+
+    // 1. STORE a function in a variable (you did this on Wednesday).
+    const double = (n) => n * 2;
+    const square = (n) => n * n;
+
+    console.log(typeof double);   // function: a function is a value
+    console.log(double(5));       // 10
+
+    // No brackets = the function itself. Brackets = run it.
+    const alsoDouble = double;    // copies the function, doesn't call it
+    console.log(alsoDouble(7));   // 14
+
+    // 2. PASS a function to another function, as an argument.
+    //    A function you pass in like this is called a CALLBACK.
+    function applyTwice(action, value) {
+      return action(action(value));
+    }
+
+    console.log(applyTwice(double, 3));   // 12: double(double(3)) = double(6)
+    console.log(applyTwice(square, 3));   // 81: square(square(3)) = square(9)
+
+    // You can also write the callback right inside the call.
+    console.log(applyTwice((n) => n + 10, 1));   // 21
+
+    // Common mistake: brackets RUN double too early, so applyTwice gets NaN.
+    // Uncomment the next line to see: TypeError: action is not a function
+    // console.log(applyTwice(double(), 3));
+
+    // 3. RETURN a function from a function.
+    function makeMultiplier(factor) {
+      return (n) => n * factor;   // hands back a brand-new function
+    }
+
+    const triple = makeMultiplier(3);
+    const timesTen = makeMultiplier(10);
+
+    console.log(triple(5));       // 15
+    console.log(timesTen(5));     // 50
+
+    // HIGHER-ORDER FUNCTION = a function that takes a function as an argument,
+    // or returns a function. applyTwice and makeMultiplier are both higher-order.
+
+    // A question for the next slide:
+    // makeMultiplier(3) finished running a long time ago.
+    // So how does triple still know that factor is 3?
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 17 · Demo 05: Constructor functions</title>
+</head>
+<body>
+  <h1>Demo 05: Constructor functions</h1>
+  <p>Slide 8. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // CONSTRUCTOR FUNCTION = an ordinary function that builds objects when you call it with new.
+    // By convention its name starts with a capital letter: Student, not student.
+
+    // 1. The blueprint.
+    function Student(name, score) {
+      this.name = name;      // this = the brand-new object that new just made
+      this.score = score;
+    }
+
+    // 2. Shared methods go on Student.prototype: ONE copy, used by every student.
+    Student.prototype.introduce = function () {
+      return 'Hi, this is ' + this.name;
+    };
+
+    // 3. Build objects with new.
+    const arta = new Student('Arta', 92);
+    const drin = new Student('Drin', 64);
+
+    console.log(arta);               // Student {name: 'Arta', score: 92}
+    console.log(drin.introduce());   // Hi, this is Drin
+
+    // What new did, in 4 steps:
+    //   1. made a new, empty object
+    //   2. linked its prototype to Student.prototype
+    //   3. ran Student with this = that new object, so it got name and score
+    //   4. returned the object
+
+    // 4. Prove it: one shared method, one chain.
+    console.log(arta.introduce === drin.introduce);                 // true: the very same function
+    console.log(Object.getPrototypeOf(arta) === Student.prototype); // true
+    // arta → Student.prototype → Object.prototype → null
+
+    // 5. Common mistake: forgetting new.
+    //    Student then runs like a normal function. There's no new object, so this is the
+    //    global window: name and score leak into the global scope, and Student returns nothing.
+    // Uncomment the next two lines to see: TypeError: Cannot read properties of undefined (reading 'introduce')
+    // const ilir = Student('Ilir', 71);
+    // console.log(ilir.introduce());
+  </script>
+</body>
+</html>

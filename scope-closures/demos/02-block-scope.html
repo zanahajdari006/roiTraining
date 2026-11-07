@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 16 · Demo 02: Block scope and the scope chain</title>
+</head>
+<body>
+  <h1>Demo 02: Block scope and the scope chain</h1>
+  <p>Slide 5. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // A BLOCK is any code between curly braces { }: an if, a for, a while...
+
+    // 1. let and const live only inside their block.
+    const age = 20;
+
+    if (age >= 18) {
+      const message = 'You can vote';
+      console.log(message);       // You can vote
+    }
+
+    // Uncomment the next line to see: ReferenceError: message is not defined
+    // console.log(message);
+
+    // 2. var IGNORES blocks. Only a function's walls can stop it.
+    if (age >= 18) {
+      var label = 'adult';
+    }
+
+    console.log(label);           // adult: var leaked out of the if
+
+    for (var i = 1; i <= 3; i++) {
+      // the loop runs 3 times
+    }
+
+    console.log(i);               // 4: the loop counter leaked out too
+
+    for (let j = 1; j <= 3; j++) {
+      // the same loop, with let
+    }
+
+    // Uncomment the next line to see: ReferenceError: j is not defined
+    // console.log(j);
+
+    // 3. The SCOPE CHAIN: when JavaScript meets a name, it looks in the
+    //    current scope first, then one level out, then out again... up to global.
+    const city = 'Prishtina';               // global
+
+    function showAddress() {
+      const area = 'Dardania';              // showAddress's scope
+
+      function showStreet() {
+        const street = 'Rruga B';           // showStreet's scope
+        console.log(street + ', ' + area + ', ' + city);
+      }
+
+      showStreet();
+      // showAddress can't see street: the chain only goes OUT, never IN.
+    }
+
+    showAddress();                // Rruga B, Dardania, Prishtina
+
+    // 4. SHADOWING: an inner variable with the same name hides the outer one.
+    //    The closest one wins.
+    const greeting = 'Hello from the global scope';
+
+    function speak() {
+      const greeting = 'Hello from inside speak';
+      console.log(greeting);      // Hello from inside speak
+    }
+
+    speak();
+    console.log(greeting);        // Hello from the global scope: untouched
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 17 · Demo 01: Objects</title>
+</head>
+<body>
+  <h1>Demo 01: Objects</h1>
+  <p>Slide 4. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // OBJECT = related values grouped under one name.
+    // Each value has a label called a KEY. A key and its value together = a PROPERTY.
+
+    // 1. Create an object with curly braces. This is called an OBJECT LITERAL.
+    const student = {
+      name: 'Arta',
+      city: 'Prishtina',
+      age: 21,
+      isEnrolled: true
+    };
+
+    const ndertesa = {
+      name: 'Shkolla e mesme',
+      city: 'Prishtina',
+      floors: 3,
+      isOpen: true,
+      classrooms: 100
+    };
+
+    console.log(student);            // {name: 'Arta', city: 'Prishtina', age: 21, isEnrolled: true}
+    console.log(ndertesa);           // {name: 'Shkolla e mesme', city: 'Prishtina', floors: 3, isOpen: true, classrooms: 100}
+
+    // 2. Read a property: dot notation, or bracket notation with the key as a string.
+    console.log(student.name);       // Arta
+    console.log(ndertesa.floors);    // 3
+    console.log(student['city']);    // Prishtina
+    console.log(ndertesa['isOpen']); // true
+
+    // Brackets also accept a variable that holds the key.
+    const key = 'age';
+    console.log(student[key]);       // 21
+
+    // A key that doesn't exist gives undefined, not an error.
+    console.log(student.email);      // undefined
+
+    // 3. Change, add and delete properties.
+    student.age = 22;                     // change: the key exists, so its value is replaced
+    student.email = 'arta@example.com';   // add: the key is new, so it's created
+    student.lastName = 'Hoxha';                 // add: the key is new, so it's created
+    delete student.isEnrolled;            // delete: the property is gone
+
+    console.log(student);            // {name: 'Arta', city: 'Prishtina', age: 22, email: 'arta@example.com'}
+
+    // 4. const protects the VARIABLE, not the object inside it.
+    //    Changing the object's properties (like above) is allowed.
+    //    Pointing student at a brand-new object is not.
+    // Uncomment the next line to see: TypeError: Assignment to constant variable.
+    // student = { name: 'Drin' };
+
+    // 5. A METHOD = a function stored in a property.
+    //    Inside a method, THIS = the object before the dot.
+    const drin = {
+      name: 'Drin',
+      city: 'Prizren',
+      age: 22,
+      gender: 'male',
+
+      introduce() {                  // shorthand for   introduce: function () { ... }
+        return 'Hi, this is ' + this.name + ' from ' + this.city;
+      },
+
+      introduceAdvanced() {
+        return `Hi, this is ${this.name} from ${this.city}. I am ${this.age} years old and I am a ${this.gender}.`;
+      }
+
+    };
+
+    console.log(drin.introduce());   // Hi, this is Drin from Prizren   (this = drin)
+    console.log(drin.introduceAdvanced());
+
+    // Common mistake: an ARROW function as a method.
+    // Arrow functions don't get their own this, so this.name and this.city are not drin's.
+    const broken = {
+      name: 'Drin',
+      city: 'Prizren',
+      introduce: () => 'Hi, this is ' + this.name + ' from ' + this.city
+    };
+
+    console.log(broken.introduce()); // Hi, this is  from undefined   (the name and city are gone)
+    // Fix: write methods with the shorthand, like drin's introduce() above.
+  </script>
+</body>
+</html>

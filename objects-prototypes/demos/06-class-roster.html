@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 17 · Demo 06: The class roster</title>
+</head>
+<body>
+  <h1>Demo 06: The class roster</h1>
+  <p>Slide 9. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // Today's ideas working together:
+    // a constructor, a shared method on its prototype, an array of objects,
+    // and array methods with callbacks, chained one after the other.
+
+    // 1. The blueprint, with one shared method.
+    function Student(name, score) {
+      this.name = name;                        // own data: every student gets their own
+      this.score = score;
+    }
+
+    Student.prototype.passed = function () {   // shared: one copy, on the prototype
+      return this.score >= 70;
+    };
+
+    // 2. The roster: an array of Student objects.
+    const roster = [
+      new Student('Arta', 92),
+      new Student('Drin', 64),
+      new Student('Blerta', 85),
+      new Student('Ilir', 71)
+    ];
+
+    roster.push(new Student('Besa', 58));      // a late enrolment
+    console.log(roster.length);                // 5
+
+    // 3. Who passed? CHAIN two methods: filter first, then map what's left.
+    const passedNames = roster
+      .filter((student) => student.passed())   // keep the students who passed
+      .map((student) => student.name);         // turn each one into its name
+
+    console.log(passedNames);                  // ['Arta', 'Blerta', 'Ilir']
+
+    // 4. Find one student, then ask her object a question.
+    const besa = roster.find((student) => student.name === 'Besa');
+    console.log(besa.passed());                // false: 58 is under 70
+  </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice · The mini shop</title>
+  <style>
+    /* ---------- Page look ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 16px;
+      background: #f1f2f8;
+      color: #1b1f3b;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .hint {
+      color: #6b7080;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+    }
+
+    ol {
+      margin: 0;
+      padding-left: 24px;
+    }
+
+    pre {
+      margin: 0;
+      font-size: 16px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Practice: The mini shop</h1>
+    <div class="hint">10 minutes. Write your code inside the script tag at the bottom of this file. (Slide 11)</div>
+
+    <div class="box">
+      <div class="hint">THE TASK</div>
+      <ol>
+        <li>Write a constructor function <b>Product(name, price, inStock)</b>.</li>
+        <li>Give products a <b>shared</b> method <b>label()</b> on <b>Product.prototype</b>.
+          It returns the name and the price, like <b>Laptop: 650 EUR</b>.</li>
+        <li>Make an array called <b>products</b> with these four products:<br>
+          Laptop, 650, in stock &middot; Headphones, 45, <b>not</b> in stock &middot;
+          Keyboard, 30, in stock &middot; Monitor, 180, in stock</li>
+        <li>Use <b>filter</b>, then <b>map</b>, to make <b>inStockLabels</b>:
+          the labels of the products that are in stock.</li>
+        <li>Use <b>find</b> to get the product named Monitor. Store it in <b>monitor</b>.</li>
+      </ol>
+    </div>
+
+    <div class="box">
+      <div class="hint">EXPECTED OUTPUT (one per line)</div>
+      <pre>['Laptop: 650 EUR', 'Keyboard: 30 EUR', 'Monitor: 180 EUR']
+Monitor: 180 EUR
+true</pre>
+    </div>
+
+    <div class="box">
+      <div class="hint">STRETCH (finished early?)</div>
+      Write <b>DigitalProduct(name, price, sizeMB)</b>, which <b>inherits</b> from Product.<br>
+      A digital product is <b>always</b> in stock.<br>
+      Give it a shared method <b>download()</b> that returns <b>Downloading Course videos: 850 MB</b>.<br>
+      <b>label()</b> must still work on a digital product.
+      <div class="hint" style="margin: 16px 0 8px;">EXPECTED OUTPUT</div>
+      <pre>Course videos: 25 EUR
+Downloading Course videos: 850 MB
+true</pre>
+    </div>
+
+    <div class="box">
+      <div class="hint">CONSOLE — press F12 (or right-click, Inspect) and open the Console tab.</div>
+      Save, reload, and compare your console with the expected output.
+    </div>
+  </div>
+
+  <script>
+    // HINTS
+    //   - Follow the Student constructor from Demo 05: this.name = name, and so on.
+    //   - label goes on Product.prototype, NOT inside the constructor.
+    //   - Write label with function, not an arrow: it needs this.
+    //   - inStock is already true or false, so the filter callback can simply return product.inStock.
+    //   - Chain the two methods like Demo 06: products.filter(...).map(...)
+
+    // Write Product and its label method below this line
+
+
+
+    // Then the products array, inStockLabels and monitor
+
+
+
+    // When your code is ready, uncomment these lines to test it:
+    // console.log(inStockLabels);                             // ['Laptop: 650 EUR', 'Keyboard: 30 EUR', 'Monitor: 180 EUR']
+    // console.log(monitor.label());                           // Monitor: 180 EUR
+    // console.log(products[0].label === products[1].label);   // true: every product shares one label
+
+
+    // STRETCH: write DigitalProduct below this line
+    //   - Follow Demo 07: Product.call(this, ...) inside, and Object.setPrototypeOf(...) after.
+
+
+
+    // Uncomment to test:
+    // const course = new DigitalProduct('Course videos', 25, 850);
+    // console.log(course.label());      // Course videos: 25 EUR
+    // console.log(course.download());   // Downloading Course videos: 850 MB
+    // console.log(course.inStock);      // true
+
+  </script>
+</body>
+</html>
