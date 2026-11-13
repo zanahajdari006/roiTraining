@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice · The promise kitchen</title>
+  <style>
+    /* ---------- Page look ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 16px;
+      background: #f1f2f8;
+      color: #1b1f3b;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .hint {
+      color: #6b7080;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+    }
+
+    ol {
+      margin: 0;
+      padding-left: 24px;
+    }
+
+    pre {
+      margin: 0;
+      font-size: 16px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Practice: The promise kitchen</h1>
+    <div class="hint">10 minutes. Write your code inside the script tag at the bottom of this file. (Slide 13)</div>
+
+    <div class="box">
+      <div class="hint">THE TASK</div>
+      <ol>
+        <li>Complete <b>cook(item)</b> so that it <b>returns a promise</b>. After 1 second:
+          if the item is on the menu, resolve with <b>item + ' is ready'</b>;
+          otherwise reject with <b>new Error(item + ' is not on the menu')</b>.</li>
+        <li>Cook <b>pizza</b>, <b>then</b> cook <b>salad</b> (only after the pizza is ready).
+          Log each result when it arrives, then log <b>All done!</b>.
+          Finish with <b>one .catch</b> that logs <b>Kitchen problem:</b> and the error message.</li>
+        <li>Change <b>salad</b> to <b>sushi</b> and save. What prints? What does <b>not</b> print? Why?</li>
+      </ol>
+    </div>
+
+    <div class="box">
+      <div class="hint">EXPECTED OUTPUT FOR TASK 2 (one line per second)</div>
+      <pre>pizza is ready
+salad is ready
+All done!</pre>
+      <div class="hint" style="margin: 16px 0 8px;">EXPECTED OUTPUT FOR TASK 3</div>
+      <pre>pizza is ready
+Kitchen problem: sushi is not on the menu</pre>
+    </div>
+
+    <div class="box">
+      <div class="hint">STRETCH (finished early?)</div>
+      Add a <b>.finally</b> that logs <b>Kitchen closed</b>.<br>
+      Then add a third dish to the chain.
+    </div>
+
+    <div class="box">
+      <div class="hint">CONSOLE — press F12 (or right-click, Inspect) and open the Console tab.</div>
+      Save, let the page reload, and compare your console with the expected output.
+    </div>
+  </div>
+
+  <script>
+    // HINTS
+    //   - Follow the orderCoffee pattern from Demo 04.
+    //   - menu.includes(item) gives you true or false.
+    //   - cook must RETURN the promise:  return new Promise(...)
+    //   - Inside a .then, RETURN the next cook(...) so the chain waits for it.
+
+    const menu = ['pizza', 'burger', 'salad'];
+
+    // TASK 1: complete this function
+    function cook(item) {
+      // your code here
+    }
+
+
+    // TASK 2: write your chain below this line
+
+
+
+    // TASK 3: change 'salad' to 'sushi' in your chain and save
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 19 · Demo 03: Callbacks and callback hell</title>
+</head>
+<body>
+  <h1>Demo 03: Callbacks and callback hell</h1>
+  <p>Slide 10. Open the console to see the output: F12, then Console. One line appears per second.</p>
+
+  <script>
+    // Three fake "slow" operations. Each one takes 1 second and delivers
+    // its result by calling the callback it was given.
+
+    function getUser(id, callback) {
+      setTimeout(() => {
+        callback({ id: id, name: 'Arta' });
+      }, 1000);
+    }
+
+    function getOrders(user, callback) {
+      setTimeout(() => {
+        callback(['Macchiato', 'Croissant']);
+      }, 1000);
+    }
+
+    function getPrice(item, callback) {
+      setTimeout(() => {
+        callback(1.5);
+      }, 1000);
+    }
+
+    // Each step needs the result of the step before it,
+    // so each call has to sit INSIDE the previous callback.
+    getUser(1, (user) => {
+      console.log('User:', user.name);              // User: Arta
+      getOrders(user, (orders) => {
+        console.log('Orders:', orders);             // Orders: ['Macchiato', 'Croissant']
+        getPrice(orders[0], (price) => {
+          console.log('Price:', price);             // Price: 1.5
+        });
+      });
+    });
+
+    // 3 steps = 3 levels of nesting. This shape is called CALLBACK HELL,
+    // or the pyramid of doom. And there is no error handling yet.
+  </script>
+</body>
+</html>

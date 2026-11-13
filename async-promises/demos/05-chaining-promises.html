@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 19 · Demo 05: Chaining promises</title>
+</head>
+<body>
+  <h1>Demo 05: Chaining promises</h1>
+  <p>Slide 12. Open the console to see the output: F12, then Console. One line appears per second.</p>
+
+  <script>
+    // The same three operations as Demo 03,
+    // but each one RETURNS a promise instead of taking a callback.
+
+    function getUser(id) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ id: id, name: 'Arta' });
+        }, 1000);
+      });
+    }
+
+    function getOrders(user) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(['Macchiato', 'Croissant']);
+        }, 1000);
+      });
+    }
+
+    function getPrice(item) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(1.5);
+        }, 1000);
+      });
+    }
+
+    getUser(1)
+      .then((user) => {
+        console.log('User:', user.name);            // User: Arta
+        return getOrders(user);                     // hand the next promise down the chain
+      })
+      .then((orders) => {
+        console.log('Orders:', orders);             // Orders: ['Macchiato', 'Croissant']
+        return getPrice(orders[0]);
+      })
+      .then((price) => {
+        console.log('Price:', price);               // Price: 1.5
+      })
+      .catch((error) => {
+        console.log('Failed:', error.message);      // one .catch for the whole chain
+      });
+
+    // The most common promise bug:
+    // delete the word "return" in front of getOrders(user), then save.
+    // The next .then receives undefined, and the single .catch reports:
+    // Failed: Cannot read properties of undefined (reading '0')
+  </script>
+</body>
+</html>

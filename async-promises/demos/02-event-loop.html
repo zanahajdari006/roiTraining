@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 19 · Demo 02: The event loop in action</title>
+</head>
+<body>
+  <h1>Demo 02: The event loop in action</h1>
+  <p>Slide 9. Open the console to see the output: F12, then Console. The last line takes 2 seconds to appear.</p>
+
+  <script>
+    // Predict the order of the four lines BEFORE you save and look at the console.
+
+    console.log('1. Take the order');
+
+    // setTimeout(callback, delayInMilliseconds)
+    // The timer is handed to the browser. JavaScript does NOT wait here.
+    setTimeout(() => {
+      console.log('2. Coffee is ready');
+    }, 2000);
+
+    // 0 ms does not mean "right now".
+    // It means "as soon as the call stack is empty".
+    setTimeout(() => {
+      console.log('3. Zero-delay timer');
+    }, 0);
+
+    console.log('4. Take the next order');
+
+  </script>
+</body>
+</html>
