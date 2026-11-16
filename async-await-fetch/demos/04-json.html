@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 20 · Demo 04: JSON is text</title>
+</head>
+<body>
+  <h1>Demo 04: JSON is text</h1>
+  <p>Slide 8. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // What travels over the network is TEXT.
+    // This is a JSON string. Notice: every key is in double quotes.
+    const text = '{"id": 1, "name": "Leanne Graham", "address": {"city": "Gwenborough"}}';
+
+    console.log(typeof text);                     // string
+    console.log(text.name);                       // undefined (a string has no .name)
+
+    // Parsing turns the text into a real JavaScript object.
+    const user = JSON.parse(text);
+
+    console.log(typeof user);                     // object
+    console.log(user.name);                       // Leanne Graham
+    console.log(user.address.city);               // Gwenborough
+
+    // And back again: object to JSON text.
+    const backToText = JSON.stringify(user);
+
+    console.log(backToText);
+    // {"id":1,"name":"Leanne Graham","address":{"city":"Gwenborough"}}
+
+    // With fetch you do not call JSON.parse yourself:
+    // response.json() reads the body and parses it for you (Demo 05).
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 20 · Demo 01: async and await</title>
+</head>
+<body>
+  <h1>Demo 01: async and await</h1>
+  <p>Slide 4. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // async in front of a function:
+    // the function now ALWAYS returns a promise.
+    async function getNumber() {
+      return 5;
+    }
+
+    console.log(getNumber());                   // Promise {<fulfilled>: 5}   (not 5!)
+
+    // await in front of a promise:
+    // pause THIS function until the promise settles, then hand back the value.
+    async function showNumber() {
+      const number = await getNumber();
+      console.log('The number is', number);     // The number is 5
+    }
+
+    showNumber();
+    console.log('This line runs first');
+
+    // Console order:
+    //   Promise {<fulfilled>: 5}
+    //   This line runs first
+    //   The number is 5
+    //
+    // await paused showNumber, not the program.
+    // The rest of the file carried on, then showNumber continued.
+
+    // await only works inside an async function.
+    // Uncomment the three lines below and save: SyntaxError.
+    // Comment them out again afterwards: a SyntaxError stops the whole script.
+
+    // function broken() {
+    //   const number = await getNumber();
+    // }
+  </script>
+</body>
+</html>
