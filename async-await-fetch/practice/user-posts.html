@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice · Fetch a user's posts</title>
+  <style>
+    /* ---------- Page look ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 16px;
+      background: #f1f2f8;
+      color: #1b1f3b;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .hint {
+      color: #6b7080;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+    }
+
+    ol {
+      margin: 0;
+      padding-left: 24px;
+    }
+
+    pre {
+      margin: 0;
+      font-size: 16px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Practice: Fetch a user's posts</h1>
+    <div class="hint">15 minutes. Write your code inside the script tag at the bottom of this file. This page needs an internet connection. (Slide 11)</div>
+
+    <div class="box">
+      <div class="hint">THE TASK</div>
+      Complete <b>async function getPosts(userId)</b> so that it:
+      <ol>
+        <li><b>Fetches</b> that user's posts from <b>API_URL + '/posts?userId=' + userId</b>.</li>
+        <li>Checks <b>response.ok</b> and <b>throws</b> an Error if it is false.</li>
+        <li>Converts the body with <b>response.json()</b>. You get an <b>array</b> of posts.</li>
+        <li>Logs <b>how many</b> posts there are, then each post's <b>title</b>.</li>
+        <li>Does all of it inside <b>try/catch</b>. In catch, log <b>Something went wrong:</b> and the error message.</li>
+      </ol>
+      <br>
+      Then <b>break the URL</b>: change <b>/posts</b> to <b>/postz</b> and save. What prints now?
+    </div>
+
+    <div class="box">
+      <div class="hint">EXPECTED OUTPUT FOR getPosts(1)</div>
+      <pre>User 1 has 10 posts
+1. sunt aut facere repellat ...
+2. qui est esse
+... 8 more titles (they are Latin placeholder text)</pre>
+      <div class="hint" style="margin: 16px 0 8px;">EXPECTED OUTPUT AFTER BREAKING THE URL (/postz)</div>
+      <pre>Something went wrong: HTTP error 404</pre>
+    </div>
+
+    <div class="box">
+      <div class="hint">STRETCH (finished early?)</div>
+      Before the posts, fetch the user from <b>API_URL + '/users/' + userId</b><br>
+      and log <b>Posts by</b> and their name as the first line.
+    </div>
+
+    <div class="box">
+      <div class="hint">CONSOLE — press F12 (or right-click, Inspect) and open the Console tab.</div>
+      Save, let the page reload, and compare your console with the expected output.
+    </div>
+  </div>
+
+  <script>
+    // HINTS
+    //   - Follow the getUser pattern from Demo 06: try, fetch, check ok, json, catch.
+    //   - You need TWO awaits: one for fetch, one for response.json().
+    //   - posts.length gives you the number of posts.
+    //   - posts[i].title gives you the title of one post.
+    //   - Console shows Promise {<pending>}? You forgot an await.
+
+    const API_URL = 'https://jsonplaceholder.typicode.com';
+
+    // TASKS 1 to 5: complete this function
+    async function getPosts(userId) {
+      // your code here
+    }
+
+    getPosts(1);
+
+    // AFTER IT WORKS: change '/posts' to '/postz' inside your function and save
+
+  </script>
+</body>
+</html>

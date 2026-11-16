@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 20 · Demo 06: When things go wrong</title>
+</head>
+<body>
+  <h1>Demo 06: When things go wrong</h1>
+  <p>Slide 10. This page needs an internet connection. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    const API_URL = 'https://jsonplaceholder.typicode.com';
+
+    // ---------- The problem ----------
+    // This is the function from Demo 05, with no error handling.
+    // There are only 10 users. Ask for user 999 and it prints: undefined - undefined
+    // No crash, no warning from our code. Uncomment the last line of this block to see it.
+
+    async function getUserUnsafe(id) {
+      const response = await fetch(API_URL + '/users/' + id);
+      const user = await response.json();
+      console.log(user.name, '-', user.email);
+    }
+
+    // getUserUnsafe(999);
+
+    // ---------- The fix ----------
+    // The gotcha: fetch only REJECTS when the request cannot be made at all
+    // (no internet, wrong domain). A 404 or a 500 is still a response,
+    // so fetch resolves. We have to check the status ourselves.
+
+    async function getUser(id) {
+      try {
+        const response = await fetch(API_URL + '/users/' + id);
+
+        // response.ok is true only for status 200 to 299.
+        if (!response.ok) {
+          // throw creates an error ourselves and jumps straight to catch.
+          throw new Error('HTTP error ' + response.status);
+        }
+
+        const user = await response.json();
+        console.log(user.name, '-', user.email);
+      } catch (error) {
+        console.log('Something went wrong:', error.message);
+      }
+    }
+
+    getUser(1);       // Leanne Graham - Sincere@april.biz
+    getUser(999);     // Something went wrong: HTTP error 404
+
+    // The two lines can appear in either order: both requests are on their way
+    // at the same time, and whichever answer arrives first prints first.
+    // The red "GET ... 404 (Not Found)" line is written by the browser, not by us.
+
+    // One more test: no internet.
+    //   1. F12, Network tab, change "No throttling" to "Offline".
+    //   2. Do NOT refresh. In the console, type  getUser(1)  and press Enter.
+    //   3. Something went wrong: Failed to fetch     (Chrome's wording)
+    //   4. Set the Network tab back to "No throttling".
+    // One catch block, two different kinds of failure.
+  </script>
+</body>
+</html>

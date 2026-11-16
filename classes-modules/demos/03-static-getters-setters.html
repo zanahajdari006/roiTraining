@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 18 · Demo 03: Static methods, getters and setters</title>
+</head>
+<body>
+  <h1>Demo 03: Static methods, getters and setters</h1>
+  <p>Slide 6. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    class Circle {
+      constructor(radius) {
+        this.radius = radius;          // runs the setter below, so the check happens here too
+      }
+
+      get radius() {                   // reading circle.radius runs this
+        return this._radius;
+      }
+
+      set radius(value) {              // assigning circle.radius = ... runs this
+        if (typeof value !== 'number' || value <= 0) {
+          throw new Error('Radius must be a positive number');
+        }
+        this._radius = value;          // the underscore is a convention: "internal, please don't touch"
+      }
+
+      get area() {                     // a getter with no setter: area is read-only
+        return Math.PI * this._radius ** 2;
+      }
+
+      static unitCircle() {            // static: called on Circle itself, not on a circle
+        return new Circle(1);
+      }
+    }
+
+    const c = new Circle(2);
+    console.log(c.radius);                  // 2
+    console.log(c.area.toFixed(2));         // 12.57
+
+    c.radius = 3;                           // runs the setter
+    console.log(c.area.toFixed(2));         // 28.27
+
+    const unit = Circle.unitCircle();       // static method: called on the class
+    console.log(unit.radius);               // 1
+    console.log(unit.unitCircle);           // undefined: static methods are not on instances
+
+    // Uncomment to see: Error: Radius must be a positive number
+    // c.radius = -5;
+  </script>
+</body>
+</html>

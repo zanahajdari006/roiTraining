@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 18 · Demo 02: Inheritance with extends and super</title>
+</head>
+<body>
+  <h1>Demo 02: Inheritance with extends and super</h1>
+  <p>Slides 5 and 8. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // A child class inherits everything from its parent.
+    // extends links the two. super() runs the parent's constructor.
+
+    // Parent class
+    class Animal {
+      constructor(name) {
+        this.name = name;
+      }
+
+      describe() {
+        return this.name + ' is an animal.';
+      }
+
+      speak() {
+        return this.name + ' makes a sound.';
+      }
+    }
+
+    // Child class
+    class Dog extends Animal {
+      constructor(name, breed) {
+        super(name);            // calls Animal's constructor, which sets this.name
+        this.breed = breed;     // then Dog adds what only dogs have
+      }
+
+      speak() {                 // overrides Animal's speak
+        return this.name + ' barks.';
+      }
+    }
+
+    class Cat extends Animal{
+      constructor(name, color){
+        super(name);
+        this.color = color;
+      }
+
+      speak(){
+        return this.name + ' meows.';
+      }
+    }
+
+    const rex = new Dog('Rex', 'Beagle');
+    const whiskers = new Cat('Whiskers', 'Orange');
+    const bubi = new Dog('Bubi', 'German Shepherd');
+    const mammal = new Animal('Mystery');
+
+    console.log(rex.describe());   // Rex is an animal.   (inherited: Dog never wrote describe)
+    console.log(rex.speak());      // Rex barks.          (Dog's version wins)
+    console.log(rex.breed);        // Beagle
+    console.log(whiskers.speak()); // Whiskers meows.     (Cat's version wins)
+    console.log(whiskers.describe()); // Whiskers is an animal. (inherited: Cat never wrote describe)
+
+    // The chain, link by link: Dog.prototype → Animal.prototype
+    console.log(Object.getPrototypeOf(Dog.prototype) === Animal.prototype);   // true
+
+    // A Dog is still an Animal, so it fits in the same list.
+    const pets = [new Dog('Rex', 'Beagle'), new Animal('Mystery')];
+    console.log(pets.map((pet) => pet.describe()));   // ['Rex is an animal.', 'Mystery is an animal.']
+
+    // Uncomment to see:
+    // ReferenceError: Must call super constructor in derived class before accessing 'this'
+    // class Broken extends Animal {
+    //   constructor() {
+    //     this.x = 1;         // used 'this' before super()
+    //   }
+    // }
+    // new Broken();
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 18 · Demo 01: A constructor function vs a class</title>
+</head>
+<body>
+  <h1>Demo 01: A constructor function vs a class</h1>
+  <p>Slide 4. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // The same blueprint twice. Both make the same kind of object.
+
+    // 1. The old way: a constructor function, plus a method on its prototype.
+    function Vehicle(make, wheels) {
+      this.make = make;
+      this.wheels = wheels;
+    }
+
+    Vehicle.prototype.describe = function () {
+      return this.make + ' has ' + this.wheels + ' wheels.';
+    };
+
+
+    
+    // 2. The class way: the same thing, with the class keyword.
+    class Car {
+      constructor(make) {          // runs once for each new Car
+        this.make = make;
+        this.wheels = 4;
+      }
+
+      describe() {                 // goes onto Car.prototype for us
+        return this.make + ' has ' + this.wheels + ' wheels.';
+      }
+    }
+
+    const oldWay = new Vehicle('Trek', 2);
+    const newWay = new Car('Toyota');
+
+    console.log(oldWay.describe());    // Trek has 2 wheels.
+    console.log(newWay.describe());    // Toyota has 4 wheels.
+
+    // A class is still a blueprint, and its methods live on the prototype.
+    console.log(typeof Car);                                        // 'function'
+    console.log(Object.getPrototypeOf(newWay) === Car.prototype);   // true
+
+    // 3. Classes must be created with 'new'.
+    // Uncomment the next line to see:
+    // TypeError: Class constructor Car cannot be invoked without 'new'
+    // Car('Ford');
+  </script>
+</body>
+</html>

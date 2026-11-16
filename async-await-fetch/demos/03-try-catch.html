@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 20 · Demo 03: Error handling with try/catch</title>
+</head>
+<body>
+  <h1>Demo 03: Error handling with try/catch</h1>
+  <p>Slide 6. Open the console to see the output: F12, then Console. The output takes 1 second to appear.</p>
+
+  <script>
+    // The same helper as Demo 02. It REJECTS when the id is 0.
+    function loadUser(id) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (id > 0) {
+            resolve({ id: id, name: 'Arta' });
+          } else {
+            reject(new Error('User not found'));
+          }
+        }, 1000);
+      });
+    }
+
+    async function showUser() {
+      try {
+        // Code that might fail goes in here.
+        const user = await loadUser(1);           // change 1 to 0 and save
+        console.log(user.name);
+      } catch (error) {
+        // Runs only if something in try failed.
+        console.log('Failed:', error.message);
+      } finally {
+        // Runs either way. Optional.
+        console.log('Finished');
+      }
+    }
+
+    showUser();
+
+    // With loadUser(1):
+    //   Arta
+    //   Finished
+    //
+    // With loadUser(0):
+    //   Failed: User not found
+    //   Finished
+    //
+    // A rejected promise that you await acts like a thrown error:
+    // execution jumps out of try, straight into catch.
+
+    // What happens WITHOUT try/catch?
+    // Uncomment the five lines below and save. Look for the red line:
+    //   Uncaught (in promise) Error: User not found
+
+    // async function noSafetyNet() {
+    //   const user = await loadUser(0);
+    //   console.log(user.name);                  // never runs
+    // }
+    // noSafetyNet();
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 20 · Demo 05: Your first API call</title>
+</head>
+<body>
+  <h1>Demo 05: Your first API call</h1>
+  <p>Slide 9. This page needs an internet connection. Open the console to see the output: F12, then Console.</p>
+  <p>See the raw data first: <a href="https://jsonplaceholder.typicode.com/users/1" target="_blank">jsonplaceholder.typicode.com/users/1</a></p>
+
+  <script>
+    // JSONPlaceholder: a free practice API. No account, no key.
+    const API_URL = 'https://jsonplaceholder.typicode.com';
+
+    async function getUser(id) {
+      // 1. fetch sends the request and returns a promise for the response.
+      const response = await fetch(API_URL + '/users/' + id);
+      console.log(response.status); 
+
+      // 2. response.json() reads the body and parses the JSON.
+      //    It returns a promise too, so: a second await.
+      const user = await response.json();
+
+      // Now user is a normal object.
+      console.log(user.name, '-', user.email);
+    }
+
+    getUser(2);
+    console.log('Request sent...');               // 3. prints FIRST
+
+    // Console order:
+    //   Request sent...
+    //   Leanne Graham - Sincere@april.biz
+    //
+    // await paused getUser, not the program.
+
+    // Try it: change getUser(1) to getUser(2), then getUser(3).
+    // Different id, different endpoint, different person.
+
+    // To see the status code, add this line right after the fetch line:
+                 // 200
+  </script>
+</body>
+</html>

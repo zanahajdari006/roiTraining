@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 20 · Demo 02: From a promise chain to async/await</title>
+</head>
+<body>
+  <h1>Demo 02: From a promise chain to async/await</h1>
+  <p>Slide 5. Open the console to see the output: F12, then Console. Both lines appear after about 2 seconds.</p>
+
+  <script>
+    // Two pretend-slow helpers that return promises, like the ones from Session 19.
+    // Each one takes 1 second.
+
+    function loadUser(id) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (id > 0) {
+            resolve({ id: id, name: 'Arta' });
+          } else {
+            reject(new Error('User not found'));
+          }
+        }, 1000);
+      });
+    }
+
+    function loadPosts(userId) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(['First post', 'Second post']);
+        }, 1000);
+      });
+    }
+
+    // ---------- Style 1: the promise chain (Session 19) ----------
+
+    function showUserChain() {
+      loadUser(1)
+        .then((user) => loadPosts(user.id))
+        .then((posts) => console.log('Chain:', posts));
+    }
+
+    // ---------- Style 2: async/await (today) ----------
+    // 1. Put async in front of the function.
+    // 2. Turn each .then() into a line with await.
+    // 3. Swap .catch() for try/catch (Demo 03).
+
+    async function showUser() {
+      const user = await loadUser(1);             // wait 1 second, get the user
+      const posts = await loadPosts(user.id);     // then wait 1 more second, get the posts
+      console.log('async/await:', posts);
+    }
+
+    showUserChain();                              // Chain: ['First post', 'Second post']
+    showUser();                                   // async/await: ['First post', 'Second post']
+
+    // Same promises, same timing, same result.
+    // In showUser, "user" is a normal variable: you can use it on any line of the function.
+  </script>
+</body>
+</html>

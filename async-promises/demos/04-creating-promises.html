@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session 19 · Demo 04: Creating and handling a promise</title>
+</head>
+<body>
+  <h1>Demo 04: Creating and handling a promise</h1>
+  <p>Slide 11. Open the console to see the output: F12, then Console.</p>
+
+  <script>
+    // CREATING a promise
+    function orderCoffee(inStock) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (inStock) {
+            resolve('Macchiato');                   // success: the promise is fulfilled
+          } else {
+            reject(new Error('Out of milk'));       // failure: the promise is rejected
+          }
+        }, 1000);
+      });
+    }
+
+    // HANDLING a promise
+    orderCoffee(true)
+      .then((coffee) => {
+        console.log('Got:', coffee);                // runs if fulfilled
+      })
+      .catch((error) => {
+        console.log('Problem:', error.message);     // runs if rejected
+      })
+      .finally(() => {
+        console.log('Leaving the coffee shop');     // runs either way
+      });
+
+    // With orderCoffee(true):
+    //   Got: Macchiato
+    //   Leaving the coffee shop
+
+    // Change true to false, save, and look again:
+    //   Problem: Out of milk
+    //   Leaving the coffee shop
+
+    // See the "buzzer" itself.
+    // Uncomment the next two lines to see: Promise {<pending>}
+    // const buzzer = orderCoffee(true);
+    // console.log(buzzer);
+  </script>
+</body>
+</html>
