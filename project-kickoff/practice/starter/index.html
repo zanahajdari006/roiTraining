@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice · Plan and set up your app</title>
+  <style>
+    /* ---------- Page look ---------- */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 16px;
+      background: #f1f2f8;
+      color: #1b1f3b;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .hint {
+      color: #6b7080;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+    }
+
+    ol {
+      margin: 0;
+      padding-left: 24px;
+    }
+
+    pre {
+      margin: 0;
+      font-size: 16px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Practice: Plan and set up your app</h1>
+    <div class="hint">22 minutes. Open this page with Live Server. It needs an internet connection. (Slide 11)</div>
+
+    <div class="box">
+      <div class="hint">PART A · THE PLAN · 12 MINUTES</div>
+      Copy <b>practice/project-plan-template.md</b> into your own project folder and fill in:
+      <ol>
+        <li>Your <b>goal</b>: one sentence.</li>
+        <li>At least <b>three user stories</b>.</li>
+        <li>Your <b>MVP</b>: must-haves, each with a "done when" check.</li>
+        <li>Your <b>API</b>: open its URL in the browser and write down the fields you will use.</li>
+        <li>Your <b>wireframe</b> on paper, and your <b>module map</b>: which functions go in which file.</li>
+      </ol>
+    </div>
+
+    <div class="box">
+      <div class="hint">PART B · THE SKELETON · 10 MINUTES</div>
+      Copy this <b>starter</b> folder into your project folder. Then follow TODO 1 to 5:
+      <ol>
+        <li><b>api.js</b>: set API_URL and export one function for your first user story.</li>
+        <li><b>ui.js</b>: export one show function that logs that data.</li>
+        <li><b>main.js</b>: import both, and complete <b>start()</b>.</li>
+      </ol>
+      <br>
+      Then <b>break the URL</b> in your api.js function and save. What prints now?
+    </div>
+
+    <div class="box">
+      <div class="hint">EXPECTED OUTPUT (Dog CEO example)</div>
+      <pre>Loading...
+Your dog: https://images.dog.ceo/breeds/...</pre>
+      <div class="hint" style="margin: 16px 0 8px;">EXPECTED OUTPUT AFTER BREAKING THE URL</div>
+      <pre>Loading...
+Something went wrong: HTTP error 404</pre>
+      <div class="hint" style="margin-top: 8px;">Some APIs answer a bad request with 400 instead of 404. Either one means your error handling works.</div>
+    </div>
+
+    <div class="box">
+      <div class="hint">STRETCH (finished early?)</div>
+      Add a second user story: a second function in api.js, a second show function in ui.js,<br>
+      and a second story function in main.js that uses them.
+    </div>
+
+    <div class="box">
+      <div class="hint">CONSOLE · press F12 (or right-click, Inspect) and open the Console tab.</div>
+      Save, let the page reload, and compare your console with the expected output.
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
